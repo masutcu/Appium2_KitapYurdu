@@ -1,20 +1,7 @@
 package stepDefinitions;
 
-import io.appium.java_client.TouchAction;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
-import screens.Screens;
-import screens.androidScreen.DragAndDropScreen;
-import utils.Driver;
-
-import static utils.ReusableMethods.*;
-
 public class ViewSteps {
-
+/*
     Screens screens = new Screens();
 
     @And("kullanici Views butonuna tikladi")
@@ -59,5 +46,5 @@ public class ViewSteps {
     @And("kullanici {string} butonuna uzun basti")
     public void kullaniciButonunaUzunBasti(String text) {
         longTap(Driver.getDriver(),Driver.getDriver().findElement(By.xpath("//android.widget.TextView[@text='"+ text +"']")));
-    }
+    } */
 }

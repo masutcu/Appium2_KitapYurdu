@@ -1,15 +1,5 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import org.junit.Assert;
-import screens.Screens;
-import screens.androidScreen.ApiDemosScreen;
-import screens.androidScreen.MainScreen;
-import screens.androidScreen.PreferenceDependenciesScreen;
-import screens.androidScreen.PreferenceScreen;
-import utils.Driver;
 import utils.ReusableMethods;
 
 public class ApiDemosSteps extends ReusableMethods {
@@ -17,7 +7,7 @@ public class ApiDemosSteps extends ReusableMethods {
 //    ApiDemosScreen apiDemosScreen = new ApiDemosScreen();
 //    PreferenceScreen preferenceScreen = new PreferenceScreen();
 //    PreferenceDependenciesScreen preferenceDependenciesScreen = new PreferenceDependenciesScreen();
-
+/*
     Screens screens = new Screens();
 
 
@@ -128,4 +118,6 @@ public class ApiDemosSteps extends ReusableMethods {
     public void kullaniciEkraninda(String text) {
         Assert.assertTrue(isElementPresent(text));
     }
+    */
+
 }
