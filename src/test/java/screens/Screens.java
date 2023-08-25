@@ -1,14 +1,8 @@
 package screens;
-import screens.androidScreen.ApiDemosScreen;
-import screens.androidScreen.DateWidgetsScreen;
-import screens.androidScreen.DragAndDropScreen;
+
 import screens.androidScreen.KitapYurdu;
-import screens.androidScreen.MainScreen;
-import screens.androidScreen.PreferenceDependenciesScreen;
-import screens.androidScreen.PreferenceScreen;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
-import screens.androidScreen.SwitchScreen;
-import screens.androidScreen.ViewsScreen;
+
 
 public class Screens {
 
