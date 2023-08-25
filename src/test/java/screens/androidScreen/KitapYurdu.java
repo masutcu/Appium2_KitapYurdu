@@ -10,10 +10,11 @@ import utils.Driver;
 import java.time.Duration;
 
 public class KitapYurdu {
+
     public KitapYurdu(){
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver(), Duration.ofSeconds(30)),this);
     }
-    @FindBy(id = "//com.mobisoft.kitapyurdu:id/imageViewBigLogo")
+    @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.mobisoft.kitapyurdu:id/imageViewBigLogo']")
     public WebElement logo;
     @FindBy(xpath = "(//android.widget.ImageView[@checkable='false'])[15]")
     public WebElement searchImage;
