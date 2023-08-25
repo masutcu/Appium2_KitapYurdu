@@ -1,3 +1,4 @@
+@puzzle
 Feature: Puzzle_Yapboz_Menusu
   Scenario: Puzzle Yapboz Menusu Testi
     Given Kitap Yurdu sitesine gidildi

@@ -5,7 +5,10 @@ import screens.androidScreen.KitapYurdu;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
 import utils.Driver;
 
+import java.time.Duration;
+
 import static org.junit.Assert.*;
+import static utils.ReusableMethods.*;
 
 public class Puzzle_Yapboz_StepDefs extends KitapYurdu {
 
@@ -25,6 +28,9 @@ public class Puzzle_Yapboz_StepDefs extends KitapYurdu {
             case "Kategoriler":
                 assertTrue(kitapYurdu.tumKategoriler.isDisplayed());
                 break;
+                case "Puzzle Yapboz":
+                assertTrue(kitapYurdu.puzzleYapbozTitle.isDisplayed());
+                break;
             case "Ahşap Puzzle":
                 assertTrue(kitapYurdu.ahsapPuzzleTitle.isDisplayed());
                 break;
@@ -39,16 +45,19 @@ public class Puzzle_Yapboz_StepDefs extends KitapYurdu {
 
 
     @Then("{string} menusu tiklandi")
-    public void menusuTiklandi(String string) {
+    public void menusuTiklandi(String string) throws InterruptedException {
         switch (string) {
             case "Puzzle Yapboz":
+                wait(15);
             kitapYurdu.puzzleYapboz.click();
                 break;
             case "Ahsap Puzzle":
-
+                wait(15);
+            kitapYurdu.ahsapPuzzleMenu.click();
                 break;
             case "300 Parça":
-
+                wait(15);
+            kitapYurdu.ucyuzParcaMenu.click();
                 break;
             default:
                 break;

@@ -21,13 +21,13 @@ public class Driver {
             switch (ConfigReader.getProperty("platformName")) {
                 case "Android":
                     options = new UiAutomator2Options();
-                  options.setApp(System.getProperty("user.dir") + ConfigReader.getProperty("app"));
+                  options.setApp(ConfigReader.getProperty("app"));
 //                    options.setAppPackage("com.touchboarder.android.api.demos");  //Uygulama paketi adini ayarlar
 //                    options.setAppActivity("com.touchboarder.androidapidemos.MainActivity"); //Uygulama aktivite adini ayarla
                     options.setDeviceName(ConfigReader.getProperty("device"));    //Cihaz UDID'sini ayarla bu kodu cmd'de "adb devices" yazarak buluruz
                     options.setNoReset(true);   //sifirlama islemini kapat
                     options.setCapability("shouldTerminateApp", true);   // appi kapatmak için
-                    options.setNewCommandTimeout(Duration.ofSeconds(10));   //yeni komut zaman asimini ayarla
+                    options.setNewCommandTimeout(Duration.ofSeconds(15));   //yeni komut zaman asimini ayarla
                     break;
                 case "IOS":
                     // IOS için ayarlar
