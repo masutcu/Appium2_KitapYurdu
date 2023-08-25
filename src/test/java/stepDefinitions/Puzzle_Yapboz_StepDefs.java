@@ -1,16 +1,13 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.*;
-import screens.androidScreen.KitapYurdu;
+import screens.Screens;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
 import utils.Driver;
-
-import java.time.Duration;
-
 import static org.junit.Assert.*;
-import static utils.ReusableMethods.*;
 
-public class Puzzle_Yapboz_StepDefs extends KitapYurdu {
+
+public class Puzzle_Yapboz_StepDefs extends Screens {
 
     Puzzle_Yapboz_Screen kitapYurdu=new Puzzle_Yapboz_Screen();
     @Then("Kitap Yurdu sitesine gidildigi dogrulandi")
