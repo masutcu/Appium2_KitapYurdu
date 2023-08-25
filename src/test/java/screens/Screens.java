@@ -1,15 +1,31 @@
 package screens;
 
+import screens.androidScreen.AllCategoriesScreen;
+import screens.androidScreen.CategoriesScreen;
 import screens.androidScreen.KitapYurdu;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
 
 
 public class Screens {
 
+    public Screens(){
+    }
+
+    private CategoriesScreen categoriesScreen;
+    private AllCategoriesScreen allCategoriesScreen;
     private KitapYurdu kitapYurdu;
     private Puzzle_Yapboz_Screen puzzle_yapboz_screen;
 
-    public Screens() {
+    public AllCategoriesScreen allCategoriesScreen(){
+        if(allCategoriesScreen==null){
+            allCategoriesScreen=new AllCategoriesScreen();
+        }return allCategoriesScreen;
+    }
+
+    public CategoriesScreen categoriesScreen(){
+        if(categoriesScreen== null){
+            categoriesScreen=new CategoriesScreen();
+        } return categoriesScreen;
     }
 
 
@@ -28,6 +44,7 @@ public class Screens {
 
         return this.puzzle_yapboz_screen;
     }
+
 
 
 }
