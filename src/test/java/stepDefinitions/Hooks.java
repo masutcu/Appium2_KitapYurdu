@@ -26,7 +26,7 @@ public class Hooks {
 //                .usingDriverExecutable(new File("C:\\Users\\Mustafa\\.appium\\node_modules\\appium-reporter-plugin\\node_modules\\util-deprecate\\node.js"))
                 .withIPAddress("127.0.0.1")
                 .usingPort(4723)
-                .withTimeout(Duration.ofSeconds(300));
+                .withTimeout(Duration.ofSeconds(30));
 
 
         server = AppiumDriverLocalService.buildService(builder);
