@@ -1,17 +1,26 @@
 
 @giris
 Feature: KitapYurdu App
-  Scenario: : Main Screen
+  Scenario Outline: : Main Screen
     Given the application is installed
     And User waits_ 2 _seconds
+    Then user verifies_ "<catagories>"  _visibility
+    And User waits_ 1 _seconds
+
+    Examples:
+      | catagories |
+      | İlgi Görenler |
+      | Çok Satanlar |
+      | Yeni Çıkanlar |
+
+  Scenario: All Categories Screen Test
     Then User clicks on catagories
-    And User waits_ 2 _seconds
     Then User validate the screen title -Tüm Kategoriler
 
    Scenario Outline: Various header test
       Given User clicks on "<allCatagories>" in order
       And User waits_ 1 _seconds
-      Then User returns to allCatagories screen
+      And User returns to pre screen
      Examples:
        | allCatagories      |
        | Kitap              |

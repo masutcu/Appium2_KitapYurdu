@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
@@ -15,6 +16,7 @@ public class AllCategoriesSteps extends ReusableMethods {
     public void userValidateTheScreenTitleTumKategoriler() {
         Assert.assertTrue(isElementPresent(screen.allCategoriesScreen().allCategoriesTitle));
     }
+
     @Given("User clicks on {string} in order")
     public void userClicksOnInOrder(String secenek) {
         switch(secenek){
@@ -48,9 +50,14 @@ public class AllCategoriesSteps extends ReusableMethods {
         } wait(2);
     }
 
-    @Then("User returns to allCatagories screen")
-    public void userReturnsToAllCatagoriesScreen() {
-        backToPreScreen();
 
+    @And("User returns to pre screen")
+    public void userReturnsToPreScreen() {
+        backToPreScreen();
+    }
+
+    @Then("user verifies_ {string}  _visibility")
+    public void userVerifies__visibility(String categories) throws InterruptedException {
+        isElementVisibleWithText(categories);
     }
 }
