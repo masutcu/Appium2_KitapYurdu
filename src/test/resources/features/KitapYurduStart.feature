@@ -4,7 +4,7 @@ Feature: KitapYurdu App
   Scenario Outline: : Main Screen
     Given the application is installed
     And User waits_ 2 _seconds
-    Then user verifies_ "<catagories>"  _visibility
+    Then verifies_ "<catagories>"  _visibility
     And User waits_ 1 _seconds
 
     Examples:

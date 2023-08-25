@@ -56,8 +56,9 @@ public class AllCategoriesSteps extends ReusableMethods {
         backToPreScreen();
     }
 
-    @Then("user verifies_ {string}  _visibility")
-    public void userVerifies__visibility(String categories) throws InterruptedException {
+
+    @Then("verifies_ {string}  _visibility")
+    public void verifies__visibility(String categories) throws InterruptedException {
         isElementVisibleWithText(categories);
     }
 }
