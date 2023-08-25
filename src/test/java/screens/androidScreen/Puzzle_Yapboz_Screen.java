@@ -20,4 +20,6 @@ public class Puzzle_Yapboz_Screen extends KitapYurdu{
     public WebElement ahsapPuzzleTitle;
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"300 Parça\")")
     public WebElement ucyuzParcaTitle;
+    @FindBy( xpath= "(//android.view.ViewGroup[@resource-id='com.mobisoft.kitapyurdu:id/btnCategoryName'])[14]")
+    public WebElement ucyuzParcaMenu;
 }
