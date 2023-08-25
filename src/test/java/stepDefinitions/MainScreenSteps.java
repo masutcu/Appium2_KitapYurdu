@@ -33,5 +33,7 @@ public class MainScreenSteps extends ReusableMethods{
     public void userWaits__seconds(int seconds) {
         wait(seconds);
     }
+
+
 }
 
