@@ -9,7 +9,7 @@ import utils.Driver;
 
 import java.time.Duration;
 
-public class KitapYurduKirtasiye extends KitapYurdu {
+public class KitapYurduKirtasiye extends KitapYurduMainScreen {
     @FindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Kategoriler\"]/android.widget.ImageView")
     public WebElement kategorilerMenu;
 

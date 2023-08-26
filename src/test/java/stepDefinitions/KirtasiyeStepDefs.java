@@ -6,12 +6,19 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import screens.Screens;
 import utils.Driver;
+import utils.ReusableMethods;
 
 import static utils.ReusableMethods.*;
 
 public class KirtasiyeStepDefs {
 
     Screens screens = new Screens();
+
+    @Given("App yuklensin")
+    public void appYuklensin() {
+        Driver.getDriver();
+        ReusableMethods.wait(3);
+    }
 
     @And("kullanici katagorilere tiklar")
     public void kullaniciKatagorilereTiklar() {
@@ -28,11 +35,6 @@ public class KirtasiyeStepDefs {
         Assert.assertTrue(isElementPresent("Kırtasiye"));
     }
 
-    @And("kullanici basliklara sirayla tiklar")
-    public void kullaniciBasliklaraSiraylaTiklar() {
-
-    }
-
     @And("kullanici {string} alanlarina sirayla tiklar")
     public void kullaniciAlanlarinaSiraylaTiklar(String text) throws InterruptedException {
         tapOnElementWithText(text);
@@ -43,9 +45,5 @@ public class KirtasiyeStepDefs {
         backToPreScreen();
     }
 
-    @Given("App yuklensin")
-    public void appYuklensin() {
-        Driver.getDriver();
-    }
 }
 
