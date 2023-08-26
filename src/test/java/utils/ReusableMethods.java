@@ -211,6 +211,10 @@ public class ReusableMethods {
 
     }
 
+    public static void backToPreScreen(){
+        Driver.getDriver().navigate().back();
+    }
+
 
 
 

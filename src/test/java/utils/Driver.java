@@ -21,7 +21,7 @@ public class Driver {
             switch (ConfigReader.getProperty("platformName")) {
                 case "Android":
                     options = new UiAutomator2Options();
-                  options.setApp(ConfigReader.getProperty("app"));
+                    options.setApp(ConfigReader.getProperty("app"));
 //                    options.setAppPackage("com.touchboarder.android.api.demos");  //Uygulama paketi adini ayarlar
 //                    options.setAppActivity("com.touchboarder.androidapidemos.MainActivity"); //Uygulama aktivite adini ayarla
                     options.setDeviceName(ConfigReader.getProperty("device"));    //Cihaz UDID'sini ayarla bu kodu cmd'de "adb devices" yazarak buluruz
