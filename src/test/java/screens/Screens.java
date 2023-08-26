@@ -12,7 +12,7 @@ public class Screens {
     private AllCategoriesScreen allCategoriesScreen;
     private KitapYurdu kitapYurdu;
     private Puzzle_Yapboz_Screen puzzle_yapboz_screen;
-    private KitapYurduKirtasiye kitapYurduKirtasiye;
+    private KirtasiyeScreens kirtasiyeScreens;
 
     public AllCategoriesScreen allCategoriesScreen(){
         if(allCategoriesScreen==null){
@@ -43,11 +43,11 @@ public class Screens {
         return this.puzzle_yapboz_screen;
     }
 
-    public KitapYurduKirtasiye kitapYurduKirtasiye() {
-        if (this.kitapYurduKirtasiye == null) {
-            this.kitapYurduKirtasiye = new KitapYurduKirtasiye();
+    public KirtasiyeScreens kirtasiyeScreens() {
+        if (this.kirtasiyeScreens == null) {
+            this.kirtasiyeScreens = new KirtasiyeScreens();
         }
-        return this.kitapYurduKirtasiye;
+        return this.kirtasiyeScreens;
     }
 
 
