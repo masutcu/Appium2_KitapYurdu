@@ -1,6 +1,6 @@
 @kirtasiye
-Feature: Kitap Yurdu Test
-  Scenario Outline: Kirtasiye bolum testi
+Feature: Kitap Yurdu Mobil Test
+  Scenario Outline: Kirtasiye kategorisi alt baslıklari testi
     Given App yuklensin
     And kullanici katagorilere tiklar
     And kullanici kirtasiye bolumune tiklar
