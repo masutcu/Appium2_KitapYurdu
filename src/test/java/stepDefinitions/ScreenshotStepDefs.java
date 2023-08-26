@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -41,4 +42,6 @@ public class ScreenshotStepDefs {
         scroll(Driver.getDriver(),1);
         Thread.sleep(3000);
     }
+
+
 }

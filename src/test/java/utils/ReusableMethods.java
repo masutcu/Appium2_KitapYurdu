@@ -3,6 +3,7 @@ package utils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -213,6 +214,30 @@ public class ReusableMethods {
 
     public static void backToPreScreen(){
         Driver.getDriver().navigate().back();
+    }
+
+    /**
+     * Bu method locate alanlarında class tag name i aynı olan elementlerin attirubute isimlerinde farklılık varsa
+     * farklı olan kısımlarını text parametresi ile locate alanına bir loop içinde ekleyip,
+     * tek locate ile bütün elementleri gezmemizi sağlar. Byrada gezilen elementlerin assertion ları yapılmaktadır.
+     * @param text :buraya attirubute alanınıdaki farklı text ler yazılır.
+     * @throws InterruptedException
+     */
+    public static  void isElementVisibleWithText(String text) throws InterruptedException {
+
+        List<WebElement> elements = Driver.getDriver().findElements(AppiumBy.className("android.widget.TextView"));
+
+        for (WebElement element : elements) {
+            System.out.println("element.getText() = " + element.getText());
+            if (element.getText().contains(text)) {
+                System.out.println("element.getText()111 = " + element.getText());
+
+                Assert.assertTrue(isElementPresent(element));
+                break;
+            } else scroll(Driver.getDriver(), 1);
+            break;
+        }
+
     }
 
 
