@@ -16,6 +16,7 @@ public class KitapYurdu_StepDefs {
     }
     @When("Sitede oldugu dogrulandi")
     public void sitede_oldugu_dogrulandi() {
+
         assertTrue(kitap.logo.isDisplayed());
     }
     @Then("Search ikonu tiklandi")
@@ -24,6 +25,7 @@ public class KitapYurdu_StepDefs {
     }
     @Then("SearchBox {string} kelimesi aratildi")
     public void search_box_kelimesi_aratildi(String text) {
+
         kitap.searchBox.sendKeys(text);
     }
     @Then("dagobert kelimesi oldugu dogrulandi")
