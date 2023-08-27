@@ -3,6 +3,7 @@ package stepDefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import screens.Screens;
@@ -77,5 +78,18 @@ public class KirtasiyeStepDefs {
             Assert.assertTrue(isElementPresent(sepet));
         }
     }
+
+    @When("kullanici bir urundeki fovori butonuna basar")
+    public void kullaniciBirUrundekiFovoriButonunaBasar() {
+        tapOn(screens.kirtasiyeScreens().favoriteButton);
+    }
+
+    @And("kullanici {string} uyarisini gorur")
+    public void kullaniciUyarisiniGorur(String text) {
+        String message = screens.kirtasiyeScreens().popUpMessage.getAttribute("name").toLowerCase();
+        Assert.assertTrue(message.contains(text.toLowerCase()));
+        System.out.println("tam mesaj = " + message);
+    }
+
 }
 
