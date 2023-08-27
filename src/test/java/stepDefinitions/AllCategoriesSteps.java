@@ -61,4 +61,10 @@ public class AllCategoriesSteps extends ReusableMethods {
     public void verifies__visibility(String categories) throws InterruptedException {
         isElementVisibleWithText(categories);
     }
+
+
+    @Then("User clicks on filmTitle")
+    public void userClicksOnFilmTitle() {
+        tapOn(screen.variousScreen().filmTitle);
+    }
 }
