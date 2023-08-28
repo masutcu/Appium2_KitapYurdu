@@ -13,6 +13,9 @@ public class MainScreenSteps extends ReusableMethods{
     @Given("the application is installed")
     public void theApplicationIsInstalled() {
         Driver.getDriver();
+
+        //tapOn(screen.allCategoriesScreen().appKitapYurduIcon);
+
     }
 
 
@@ -34,6 +37,7 @@ public class MainScreenSteps extends ReusableMethods{
     public void userWaits__seconds(int seconds) {
         wait(seconds);
     }
+
 
 
 }
