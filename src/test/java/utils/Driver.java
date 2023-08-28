@@ -21,10 +21,11 @@ public class Driver {
             switch (ConfigReader.getProperty("platformName")) {
                 case "Android":
                   options = new UiAutomator2Options();
-                  options.setApp(ConfigReader.getProperty("app"));
+
+                  // options.setApp(ConfigReader.getProperty("app"));
+                  options.setApp("C:\\Users\\Lenovo\\IdeaProjects\\Appium_KitapYurdu_Project\\apps\\Kitapyurdu_8.25.0_Apkpure.apk");
                   // options.setAppPackage("com.mobisoft.kitapyurdu");  //Uygulama paketi adini ayarlar
                   // options.setAppActivity("com.mobisoft.kitapyurdu.main.MainActivity"); //Uygulama aktivite adini ayarla
-
                     options.setDeviceName(ConfigReader.getProperty("device"));    //Cihaz UDID'sini ayarla bu kodu cmd'de "adb devices" yazarak buluruz
                     options.setNoReset(true);   //sifirlama islemini kapat
                     options.setCapability("shouldTerminateApp", true);   // appi kapatmak için

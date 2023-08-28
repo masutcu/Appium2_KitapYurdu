@@ -5,14 +5,31 @@ import screens.androidScreen.*;
 
 public class Screens {
 
-    public Screens(){
+    public Screens() {
     }
 
     private CategoriesScreen categoriesScreen;
     private AllCategoriesScreen allCategoriesScreen;
     private KitapYurdu kitapYurdu;
     private Puzzle_Yapboz_Screen puzzle_yapboz_screen;
+
+    private VariousScreen variousScreen;
     private KirtasiyeScreens kirtasiyeScreens;
+    private CDScreen cdScreen;
+
+    public CDScreen cdScreen() {
+        if (cdScreen == null) {
+            cdScreen = new CDScreen();
+        }return cdScreen;
+    }
+
+
+    public VariousScreen variousScreen(){
+        if(variousScreen==null){
+            variousScreen=new VariousScreen();
+        }return variousScreen;
+    }
+
 
     public AllCategoriesScreen allCategoriesScreen(){
         if(allCategoriesScreen==null){
