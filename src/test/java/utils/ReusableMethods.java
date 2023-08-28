@@ -207,11 +207,10 @@ public class ReusableMethods {
             System.out.println("element.getText() = " + element.getText());
             if (element.getText().contains(text)) {
                 System.out.println("element.getText()111 = " + element.getText());
-
                 element.click();
                 break;
             } else ReusableMethods.scroll(Driver.getDriver(), 1);
-            break;
+
         }
 
     }
