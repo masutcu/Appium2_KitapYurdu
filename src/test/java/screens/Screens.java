@@ -5,7 +5,7 @@ import screens.androidScreen.*;
 
 public class Screens {
 
-    public Screens(){
+    public Screens() {
     }
 
     private CategoriesScreen categoriesScreen;
@@ -15,6 +15,14 @@ public class Screens {
 
     private VariousScreen variousScreen;
     private KirtasiyeScreens kirtasiyeScreens;
+    private CDScreen cdScreen;
+
+    public CDScreen cdScreen() {
+        if (cdScreen == null) {
+            cdScreen = new CDScreen();
+        }return cdScreen;
+    }
+
 
     public VariousScreen variousScreen(){
         if(variousScreen==null){
