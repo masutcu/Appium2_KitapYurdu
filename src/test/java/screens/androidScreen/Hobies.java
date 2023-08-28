@@ -23,6 +23,8 @@ public class Hobies extends KitapYurdu {
     public WebElement woodentoy;
     @FindBy(xpath = "//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/count']")
     public WebElement count;
+    @FindBy(xpath = "(//android.widget.ImageView[@resource-id='com.mobisoft.kitapyurdu:id/productImage'])[i]")
+    public WebElement urunsayisi;
 
 
 

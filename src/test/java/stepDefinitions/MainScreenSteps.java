@@ -25,6 +25,7 @@ public class MainScreenSteps extends ReusableMethods{
 
     @Given("User clicks on Various title")
     public void userClicksOnVariousTitle() {
+
         tapOn(screen.categoriesScreen().variousIcon);
     }
 
