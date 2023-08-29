@@ -20,7 +20,7 @@ Feature: KitapYurdu App
    Scenario Outline: Various header test
       Given User clicks on "<allCatagories>" in order
       And User waits_ 1 _seconds
-      And User returns to pre screen
+
      Examples:
        | allCatagories      |
        | Kitap              |

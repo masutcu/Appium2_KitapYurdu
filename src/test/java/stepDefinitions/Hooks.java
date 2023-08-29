@@ -34,7 +34,7 @@ public class Hooks {
         server.start();
 
 
-        int maxWaitTimeSeconds = 120;
+        int maxWaitTimeSeconds  = 120;
         int port = 4723;
         boolean serverStarted = false;
 

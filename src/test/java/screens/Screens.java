@@ -1,9 +1,6 @@
 package screens;
 
-import screens.androidScreen.AllCategoriesScreen;
-import screens.androidScreen.CategoriesScreen;
-import screens.androidScreen.KitapYurdu;
-import screens.androidScreen.Puzzle_Yapboz_Screen;
+import screens.androidScreen.*;
 
 
 public class Screens {
@@ -15,6 +12,7 @@ public class Screens {
     private AllCategoriesScreen allCategoriesScreen;
     private KitapYurdu kitapYurdu;
     private Puzzle_Yapboz_Screen puzzle_yapboz_screen;
+    private KitapCategories kitapCategories;
 
     public AllCategoriesScreen allCategoriesScreen(){
         if(allCategoriesScreen==null){
@@ -45,6 +43,11 @@ public class Screens {
         return this.puzzle_yapboz_screen;
     }
 
-
+public KitapCategories kitapCategories(){
+        if (this.kitapCategories ==null){
+            this.kitapCategories = new KitapCategories();
+        }
+        return  this.kitapCategories;
+}
 
 }
