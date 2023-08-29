@@ -13,6 +13,9 @@ public class CDScreen extends KitapYurduMainScreen {
     public WebElement orderButton;
     @FindBy(xpath = "//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewSortType']")
     public List<WebElement> orderOptions;
-
+    @FindBy(xpath = "//android.widget.TextView[@text='Pahalıdan Ucuza']")
+    public WebElement fromExpensiveToCheep;
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/textViewLeftPrice")
+    public List<WebElement> priceList;
 
 }

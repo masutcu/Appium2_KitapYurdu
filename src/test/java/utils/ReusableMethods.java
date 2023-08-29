@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
+import screens.Screens;
 import stepDefinitions.ScreenshotStepDefs;
 
 import java.io.File;
@@ -21,6 +22,8 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
+
+import static java.lang.Double.parseDouble;
 
 public class ReusableMethods {
 
@@ -280,6 +283,51 @@ public class ReusableMethods {
             Assert.assertTrue(false);
         }
     }
+
+    /**
+     * Bu method Sıralama seçenekleri arasında 'Pahalıdan Ucuza' veya 'Ucuzdan Pahalıya'
+     * şeklindeki parametreler ile sıralanan ürünlerin doğru şekilde görüntülenip görüntülenmediğini doğrular
+     * @param option alanına 'Pahalıdan Ucuza' veya 'Ucuzdan Pahalıya' gelmelidir.
+     */
+    public static void validateProductsSortingByPrice(String option)  {
+        List<WebElement> priceList1= Driver.getDriver().findElements(By.id(("com.mobisoft.kitapyurdu:id/textViewLeftPrice")));
+        int sizeOfList=priceList1.size();
+
+
+        if(option.equals("Ucuzdan Pahalıya")){
+
+            int count=0;
+            do {
+                for (int n = 0; n < priceList1.size()-1; n++) {
+                    String price1 = priceList1.get(n).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price1 = " + price1);
+                    String price2 = priceList1.get(n+1).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price2 = " + price2);
+                    double first= parseDouble(price1);
+                    double second= parseDouble(price2);
+                    Assert.assertTrue(first<=second);
+                }count++;
+            } while (count==sizeOfList-1);
+
+        } else if (option.equals("Pahalıdan Ucuza")) {
+
+
+            int count=0;
+            do {
+                for (int n = 0; n < priceList1.size()-1; n++) {
+                    String price1 = priceList1.get(n).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price1 = " + price1);
+                    String price2 = priceList1.get(n+1).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price2 = " + price2);
+                    double first= parseDouble(price1);
+                    double second= parseDouble(price2);
+                    Assert.assertTrue(first>=second);
+                }count++;
+            } while (count==sizeOfList-1);
+        } else System.out.println("Parametreniz hatalı olabilir, Kontrol edin");
+
+    }
+
 }
 
 
