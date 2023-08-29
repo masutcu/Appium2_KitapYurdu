@@ -12,6 +12,8 @@ import utils.ReusableMethods;
 
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
 public class AllCategoriesSteps extends ReusableMethods {
     Screens screen = new Screens();
 
@@ -105,5 +107,18 @@ public class AllCategoriesSteps extends ReusableMethods {
 
         }
 
+    }
+
+    @Given("User cliks on {string} options")
+    public void userCliksOnOptions(String arg0) {
+
+        tapOnElementWithText(arg0);
+    }
+
+
+
+    @Then("validate the products ranking {string}")
+    public void validateTheProductsRanking(String arg0) {
+        validateProductsSortingByPrice(arg0);
     }
 }
