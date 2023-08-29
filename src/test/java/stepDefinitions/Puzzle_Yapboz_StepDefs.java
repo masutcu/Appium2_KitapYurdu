@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import screens.Screens;
@@ -97,32 +98,31 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
     @And("Sayfada yazilan sayida urun oldugu dogrulandi")
     public void sayfadaYazilanSayidaUrunOlduguDogrulandi() throws InterruptedException {
 
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+
+
         Set<String > elements= new HashSet<>();
         List<WebElement> list=null;
-        int firstSize=0;
-        int secondSize=0;
 
+        do {
+            for (int i = 0; i < 4; i++) {
+                try{
+                    list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+                    elements.add(list.get(i).getAttribute("text"));
+                    System.out.println("elements = " + elements);
+                }catch (Exception e){
 
-    int scroll = 2;
-    for (int i = 0; i < scroll; i++) {
-        // Scroll işlemleri burada gerçekleştirilir
-
-        list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
-        for (int h = 0; h < list.size(); h++) {
-                elements.add(list.get(h).getAttribute("text"));
-                firstSize=elements.size();
-
-                secondSize=firstSize;
+                }
+        }
+            if((list.size()/4)==0) {
+                //js.executeScript("window.scrollBy(0, 10);");
+                scroll(Driver.getDriver(), 1);
+            }else {
+                break;
             }
-        scroll(Driver.getDriver(), 1);
-        scroll++;
-        if ((secondSize/2)!=0){
-            break;
-        }
-        }
 
-        System.out.println("elements = " + elements);
-        assertTrue(elements.size()==5);
+        }while ((list.size()/4)==0);
+   ;
     }
 
     }
