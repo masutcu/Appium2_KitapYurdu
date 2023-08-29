@@ -2,12 +2,11 @@ package stepDefinitions;
 
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import screens.Screens;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
 import utils.Driver;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,7 +59,11 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             kitapYurdu.ahsapPuzzleMenu.click();
                 break;
             case "300 Parça":
-                scroll(Driver.getDriver(),1);
+               try {
+                   scroll(Driver.getDriver(),1);
+               }finally {
+                   scroll(Driver.getDriver(),1);
+               }
             kitapYurdu.ucyuzParcaMenu.click();
                 break;
             case "Lava":
@@ -94,17 +97,33 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
     @And("Sayfada yazilan sayida urun oldugu dogrulandi")
     public void sayfadaYazilanSayidaUrunOlduguDogrulandi() throws InterruptedException {
 
-        List<WebElement> list= (ArrayList<WebElement>) Driver.getDriver().findElements(By.xpath("//android.widget.ImageView[@resource-id='com.mobisoft.kitapyurdu:id/productImage']"));
-        System.out.println("list = " + list);
-        scroll(Driver.getDriver(),1);
-        List<WebElement> list2= (ArrayList<WebElement>) Driver.getDriver().findElements(By.xpath("//android.widget.ImageView[@resource-id='com.mobisoft.kitapyurdu:id/productImage']"));
-        System.out.println("list = " + list2);
+        Set<String > elements= new HashSet<>();
+        List<WebElement> list=null;
+        int firstSize=0;
+        int secondSize=0;
 
 
-        Set<List<WebElement>> elements= new HashSet<>();
-        elements.add( list);
-        elements.add( list2);
-        System.out.println("elements.size() = " + elements.toString());
+    int scroll = 2;
+    for (int i = 0; i < scroll; i++) {
+        // Scroll işlemleri burada gerçekleştirilir
+
+        list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+        for (int h = 0; h < list.size(); h++) {
+                elements.add(list.get(h).getAttribute("text"));
+                firstSize=elements.size();
+
+                secondSize=firstSize;
+            }
+        scroll(Driver.getDriver(), 1);
+        scroll++;
+        if ((secondSize/2)!=0){
+            break;
+        }
+        }
+
+        System.out.println("elements = " + elements);
         assertTrue(elements.size()==5);
     }
-}
+
+    }
+
