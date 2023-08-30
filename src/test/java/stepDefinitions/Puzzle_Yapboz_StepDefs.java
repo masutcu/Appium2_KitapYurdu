@@ -1,10 +1,20 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 import screens.Screens;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
 import utils.Driver;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.Assert.*;
+import static utils.ReusableMethods.scroll;
+import static utils.ReusableMethods.urunDogrula;
 
 
 public class Puzzle_Yapboz_StepDefs extends Screens {
@@ -24,16 +34,22 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
     public void bolumundeOlduguDogrulandi(String string) {
         switch (string){
             case "Kategoriler":
-                assertTrue(kitapYurdu.tumKategoriler.isDisplayed());
+                kitapYurdu.tumKategoriler.getText().contains("Kategoriler");
                 break;
                 case "Puzzle Yapboz":
-                assertTrue(kitapYurdu.puzzleYapbozTitle.isDisplayed());
+               kitapYurdu.puzzleYapbozTitle.getText().contains("Puzzle");
                 break;
             case "Ahşap Puzzle":
-                assertTrue(kitapYurdu.ahsapPuzzleTitle.isDisplayed());
+                kitapYurdu.ahsapPuzzleTitle.getText().contains("Ahşap Puzzle");
                 break;
             case "300 Parça":
-                assertTrue(kitapYurdu.ucyuzParcaTitle.isDisplayed());
+                kitapYurdu.ucyuzParcaTitle.getText().contains("300");
+                break;
+                case "Çocuk Puzzle":
+                kitapYurdu.cocukPuzzleTitle.getText().contains("Çocuk Puzzle");
+                break;
+            case "6-48 PARÇA":
+                kitapYurdu.altiKirksekizParcaTitle.getText().contains("6-48 PARÇA");
                 break;
             default:
                 break;
@@ -46,16 +62,31 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
     public void menusuTiklandi(String string) throws InterruptedException {
         switch (string) {
             case "Puzzle Yapboz":
-                wait(15);
             kitapYurdu.puzzleYapboz.click();
                 break;
             case "Ahsap Puzzle":
-                wait(15);
             kitapYurdu.ahsapPuzzleMenu.click();
                 break;
             case "300 Parça":
-                wait(15);
+               try {
+                   scroll(Driver.getDriver(),1);
+               }finally {
+                   scroll(Driver.getDriver(),1);
+               }
             kitapYurdu.ucyuzParcaMenu.click();
+                break;
+            case "Lava":
+                kitapYurdu.lava.click();
+                break;
+            case "Çocuk Puzzle":
+                try {
+                    kitapYurdu.cocukPuzzle.click();
+                }finally {
+                    kitapYurdu.cocukPuzzle.click();
+                }
+                break;
+                case "6-48 PARÇA":
+                kitapYurdu.altiKirksekizParca.click();
                 break;
             default:
                 break;
@@ -81,4 +112,44 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
         }
 
     }
+
+    @And("Sayfada {string} sayida urun oldugu dogrulandi")
+    public void sayfadaSayidaUrunOlduguDogrulandi(String text) throws InterruptedException {
+            String bolumBasligi= kitapYurdu.altiKirksekizParca.getText();
+        System.out.println("bolumBasligi = " + bolumBasligi);
+        if (bolumBasligi.equals("6-48 PARÇA")) {
+            urunDogrula("//android.widget.TextView[@text='12 ürün listelendi']");
+        }else {
+           // "Lava":
+            Set<String > elements= new HashSet<>();
+            List<WebElement> list=null;
+            do {
+                for (int i = 0; i < 4; i++) {
+                    try{
+                        list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+                        elements.add(list.get(i).getAttribute("text"));
+                        System.out.println("elements = " + elements);
+                        System.out.println("elements.size() = " + elements.size());
+                    }catch (Exception e){
+
+                    }
+                }
+                if((list.size()/4)==1) {
+                    //js.executeScript("window.scrollBy(0, 10);");
+                    scroll(Driver.getDriver(), 1);
+                }else {
+                    break;
+                }
+
+            }while ((list.size()/4)==1);
+
+        }
+
+
+
+
+
+    }
+
 }
+

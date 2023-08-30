@@ -358,6 +358,44 @@ public class ReusableMethods {
 
     }
 
+
+    /**
+     * Bu metot sayfadaki ürünlerin texlerini tek tek alıp Set içine koyar. Scroll yaparak aşağıya iner.
+     * Son ürünü de aldıktan sonra kapanır.
+     * @param locate Ürün sayısını gösteren text elementinin locate'dir. Xpath olarak verirseniz metinden
+     *               sadece sayıyı alıp Set'in size ile karşılaştırır.
+     * @throws InterruptedException
+     */
+    public static void urunDogrula(String locate) throws InterruptedException {
+        Set<String> elements = new HashSet();
+        List<WebElement> list = null;
+        String count = Driver.getDriver().findElement(By.xpath(locate)).getText();
+        int actualElementSize = -1;
+
+        int expectedElementSize;
+        do {
+            for(expectedElementSize = 0; expectedElementSize < 4; ++expectedElementSize) {
+                try {
+                    list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+                    elements.add(((WebElement)list.get(expectedElementSize)).getAttribute("text"));
+                } catch (Exception var7) {
+                }
+            }
+
+            if ((list.size() / 4) != 1) {
+                break;
+            }
+
+            scroll(Driver.getDriver(), 1);
+            actualElementSize = elements.size();
+            expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
+
+        } while(actualElementSize != expectedElementSize);
+
+        Assert.assertEquals(actualElementSize , expectedElementSize);
+    }
+
+
 }
 
 
