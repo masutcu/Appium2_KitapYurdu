@@ -120,7 +120,6 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
         if (bolumBasligi.equals("6-48 PARÇA")) {
             urunDogrula("//android.widget.TextView[@text='12 ürün listelendi']");
         }else {
-
            // "Lava":
             Set<String > elements= new HashSet<>();
             List<WebElement> list=null;
@@ -143,7 +142,6 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 }
 
             }while ((list.size()/4)==1);
-                System.out.println("list.size() = " + list.size());
 
         }
 

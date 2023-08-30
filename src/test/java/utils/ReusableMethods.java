@@ -358,12 +358,9 @@ public class ReusableMethods {
             scroll(Driver.getDriver(), 1);
             actualElementSize = elements.size();
             expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
-            System.out.println("actualElementSize = " + actualElementSize);
+
         } while(actualElementSize != expectedElementSize);
 
-
-        System.out.println("actual size = " + actualElementSize);
-        System.out.println("expected size = " + expectedElementSize);
         Assert.assertEquals(actualElementSize , expectedElementSize);
     }
 
