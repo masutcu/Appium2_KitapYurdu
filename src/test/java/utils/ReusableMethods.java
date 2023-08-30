@@ -339,6 +339,10 @@ public class ReusableMethods {
 
 
 
+
+
+
+
     public static void urunDogrula(String locate) throws InterruptedException {
         Set<String > elements= new HashSet<>();
         List<WebElement> list=null;
