@@ -115,11 +115,13 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
     @And("Sayfada {string} sayida urun oldugu dogrulandi")
     public void sayfadaSayidaUrunOlduguDogrulandi(String text) throws InterruptedException {
-        switch (text){
-            case "6-48 PARÇA":
+            String bolumBasligi= kitapYurdu.altiKirksekizParca.getText();
+        System.out.println("bolumBasligi = " + bolumBasligi);
+        if (bolumBasligi.equals("6-48 PARÇA")) {
             urunDogrula("//android.widget.TextView[@text='12 ürün listelendi']");
-            break;
-            case "Lava":
+        }else {
+
+           // "Lava":
             Set<String > elements= new HashSet<>();
             List<WebElement> list=null;
             do {
@@ -142,9 +144,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
             }while ((list.size()/4)==1);
                 System.out.println("list.size() = " + list.size());
-                break;
-            default:
-                break;
+
         }
 
 

@@ -347,22 +347,24 @@ public class ReusableMethods {
                 try {
                     list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
                     elements.add(((WebElement)list.get(expectedElementSize)).getAttribute("text"));
-                    System.out.println("elements = " + elements);
                 } catch (Exception var7) {
                 }
             }
 
-            if (list.size() / 4 != 1) {
+            if ((list.size() / 4) != 1) {
                 break;
             }
 
             scroll(Driver.getDriver(), 1);
             actualElementSize = elements.size();
+            expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
             System.out.println("actualElementSize = " + actualElementSize);
-        } while(actualElementSize == elements.size());
+        } while(actualElementSize != expectedElementSize);
 
-        expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
-        Assert.assertTrue(actualElementSize == expectedElementSize);
+
+        System.out.println("actual size = " + actualElementSize);
+        System.out.println("expected size = " + expectedElementSize);
+        Assert.assertEquals(actualElementSize , expectedElementSize);
     }
 
 
