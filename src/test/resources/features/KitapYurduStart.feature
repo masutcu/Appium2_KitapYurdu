@@ -94,8 +94,7 @@ Feature: KitapYurdu App
     And validete  all order options are display and un-selected
 
   @OrderOptions
-    Scenario: Option 'Ucuzdan Pahalıya' test
-      Given User cliks on "Pahalıdan Ucuza" options
-      Then validate the products ranking "Pahalıdan Ucuza"
+    Scenario: Option sorting by price test
+      Given validate the products ranking "Pahalıdan Ucuza"
 
 
