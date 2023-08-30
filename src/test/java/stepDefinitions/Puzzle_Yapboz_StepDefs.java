@@ -14,6 +14,7 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 import static utils.ReusableMethods.scroll;
+import static utils.ReusableMethods.urunDogrula;
 
 
 public class Puzzle_Yapboz_StepDefs extends Screens {
@@ -43,6 +44,12 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             case "300 Parça":
                 kitapYurdu.ucyuzParcaTitle.getText().contains("300");
                 break;
+                case "Çocuk Puzzle":
+                kitapYurdu.cocukPuzzleTitle.getText().contains("Çocuk Puzzle");
+                break;
+            case "6-48 PARÇA":
+                kitapYurdu.altiKirksekizParcaTitle.getText().contains("6-48 PARÇA");
+                break;
             default:
                 break;
         }
@@ -70,6 +77,16 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             case "Lava":
                 kitapYurdu.lava.click();
                 break;
+            case "Çocuk Puzzle":
+                try {
+                    kitapYurdu.cocukPuzzle.click();
+                }finally {
+                    kitapYurdu.cocukPuzzle.click();
+                }
+                break;
+                case "6-48 PARÇA":
+                kitapYurdu.altiKirksekizParca.click();
+                break;
             default:
                 break;
 
@@ -95,35 +112,43 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
     }
 
-    @And("Sayfada yazilan sayida urun oldugu dogrulandi")
-    public void sayfadaYazilanSayidaUrunOlduguDogrulandi() throws InterruptedException {
+    @And("Sayfada {string} sayida urun oldugu dogrulandi")
+    public void sayfadaSayidaUrunOlduguDogrulandi(String text) throws InterruptedException {
+        switch (text){
+            case "6-48 PARÇA":
+            urunDogrula("//android.widget.TextView[@text='12 ürün listelendi']");
+            break;
+            case "Lava":
+            Set<String > elements= new HashSet<>();
+            List<WebElement> list=null;
+            do {
+                for (int i = 0; i < 4; i++) {
+                    try{
+                        list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+                        elements.add(list.get(i).getAttribute("text"));
+                        System.out.println("elements = " + elements);
+                    }catch (Exception e){
 
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-
-
-        Set<String > elements= new HashSet<>();
-        List<WebElement> list=null;
-
-        do {
-            for (int i = 0; i < 4; i++) {
-                try{
-                    list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
-                    elements.add(list.get(i).getAttribute("text"));
-                    System.out.println("elements = " + elements);
-                }catch (Exception e){
-
+                    }
                 }
-        }
-            if((list.size()/4)==0) {
-                //js.executeScript("window.scrollBy(0, 10);");
-                scroll(Driver.getDriver(), 1);
-            }else {
+                if((list.size()/4)==1) {
+                    //js.executeScript("window.scrollBy(0, 10);");
+                    scroll(Driver.getDriver(), 1);
+                }else {
+                    break;
+                }
+
+            }while ((list.size()/4)==1);
+            break;
+            default:
                 break;
-            }
+        }
 
-        }while ((list.size()/4)==0);
-   ;
+
+
+
+
     }
 
-    }
+}
 

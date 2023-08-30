@@ -3,7 +3,6 @@ package utils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -15,9 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
+import static org.junit.Assert.assertTrue;
 
 public class ReusableMethods {
 
@@ -232,7 +231,7 @@ public class ReusableMethods {
             if (element.getText().contains(text)) {
                 System.out.println("element.getText()111 = " + element.getText());
 
-                Assert.assertTrue(isElementPresent(element));
+                assertTrue(isElementPresent(element));
                 break;
             } else scroll(Driver.getDriver(), 1);
             break;
@@ -240,6 +239,34 @@ public class ReusableMethods {
 
     }
 
+    public static void urunDogrula(String locate) throws InterruptedException {
+        Set<String > elements= new HashSet<>();
+        List<WebElement> list=null;
+        String count=Driver.getDriver().findElement(By.xpath(locate)).getText();
+        int actualElementSize=-1;
+        do {
+            for (int i = 0; i < 4; i++) {
+                try{
+                    list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+                    elements.add(list.get(i).getAttribute("text"));
+                    System.out.println("elements = " + elements);
+                }catch (Exception e){
+
+                }
+            }
+            if((list.size()/4)==1) {
+                //js.executeScript("window.scrollBy(0, 10);");
+                scroll(Driver.getDriver(), 1);
+            }else {
+                break;
+            }
+            actualElementSize= elements.size();
+            System.out.println("actualElementSize = " + actualElementSize);
+        }while (actualElementSize==elements.size());
+
+        int expectedElementSize= Integer.parseInt(count.replaceAll("[^0-9]", ""));
+       assertTrue(actualElementSize==expectedElementSize);
+    }
 
 
 
