@@ -1,6 +1,7 @@
 @giris
 Feature: KitapYurdu App
 
+
   Background: Main Screen
     Given the application is installed
     And User waits_ 2 _seconds
@@ -94,7 +95,7 @@ Feature: KitapYurdu App
       | Sağlık Spor   |
       | Yabancı Müzik |
 
-    @CdTest
+  @OrderOptions
   Scenario: 'CD' field test
     Given User clicks on catagories
     And User waits_ 2 _seconds
@@ -103,10 +104,15 @@ Feature: KitapYurdu App
     Then User clicks on cdTitle
     And User waits_ 2 _seconds
 
-  @CdTest
-      Scenario: All Products Field test
-        Given User cliks on _Tüm Ürünleri Göster_
-        Then User clicks on orderButton
-        And validete  all order options are display and un-selected
+  @OrderOptions
+  Scenario: Order Options test
+    Given User cliks on _Tüm Ürünleri Göster_
+    Then User clicks on orderButton
+    And validete  all order options are display and un-selected
+
+  @OrderOptions
+    Scenario: Option 'Ucuzdan Pahalıya' test
+      Given User cliks on "Pahalıdan Ucuza" options
+      Then validate the products ranking "Pahalıdan Ucuza"
 
 
