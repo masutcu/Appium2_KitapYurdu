@@ -6,7 +6,7 @@ Feature: KitapYurdu App
     Given the application is installed
     And User waits_ 2 _seconds
 
-  Scenario Outline: : Test1 Main Screen Categories
+  Scenario Outline: Test1 Main Screen Categories
     Given verifies_ "<catagories>"  _visibility
     And User waits_ 1 _seconds
     Examples:
@@ -18,6 +18,23 @@ Feature: KitapYurdu App
   Scenario: Test2 All Categories Screen Test
     Given User clicks on catagories
     Then User validate the screen title -Tüm Kategoriler
+
+
+   Scenario Outline: Various header test
+      Given User clicks on "<allCatagories>" in order
+      And User waits_ 1 _seconds
+
+     Examples:
+       | allCatagories      |
+       | Kitap              |
+       | Dergi              |
+       | Cesitli            |
+       | Kirtasiye          |
+       | Hobi ve Oyuncak    |
+       | Puzzle - Yapboz    |
+       | Aksesuar           |
+       | Duvar Aksesuarlari |
+       | Ahsap urunler      |
 
   Scenario Outline: Test3 Various header test
     Given User clicks on catagories
