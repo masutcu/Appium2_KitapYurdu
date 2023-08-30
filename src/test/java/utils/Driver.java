@@ -21,6 +21,7 @@ public class Driver {
             switch (ConfigReader.getProperty("platformName")) {
                 case "Android":
                   options = new UiAutomator2Options();
+
              //  options.setApp(ConfigReader.getProperty("app"));
                options.setApp("C:/Users/Casper/Downloads/Kitapyurdu_8.25.0_Apkpure.apk");
 //                   options.setAppPackage("com.mobisoft.kitapyurdu");  //Uygulama paketi adini ayarlar

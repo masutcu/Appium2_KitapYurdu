@@ -3,23 +3,27 @@ package utils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.commons.io.FileUtils;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
+import stepDefinitions.ScreenshotStepDefs;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ReusableMethods {
+
 
     public static void tapOnElementWithText(String text) {
         List<WebElement> mobileElementList = Driver.getDriver().findElements(By.className("android.widget.TextView"));
@@ -165,7 +169,7 @@ public class ReusableMethods {
         Sequence sequence = new Sequence(finger1,1).
                 addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(), startX, startY)).
                 addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg())).
-                addAction(new Pause(finger1, Duration.ofMillis(200))).
+                addAction(new Pause(finger1, Duration.ofMillis(400))).
                 addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(),endX,endY)).
                 addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
@@ -203,11 +207,10 @@ public class ReusableMethods {
             System.out.println("element.getText() = " + element.getText());
             if (element.getText().contains(text)) {
                 System.out.println("element.getText()111 = " + element.getText());
-
                 element.click();
                 break;
             } else ReusableMethods.scroll(Driver.getDriver(), 1);
-            break;
+
         }
 
     }
@@ -239,8 +242,54 @@ public class ReusableMethods {
         }
 
     }
+    public static void getScreenshot() throws IOException {
+        //after verification take screenshot
+        //I use this code to take a screenshot when needed
+        // naming the screenshot with the current date to avoid duplication
 
+        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 
+        // TakesScreenshot is an interface of selenium that takes the screenshot
+        TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
+        File source = ts.getScreenshotAs(OutputType.FILE);
 
+        // full path to the screenshot location
+        String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + date + ".png";
+        File finalDestination = new File(target);
 
+        // save the screenshot to the path given
+        FileUtils.copyFile(source, finalDestination);
+    }
+    public static void validateCompabilitiyOfSubTitleWithTheTitle(String subTitle, String title) throws IOException {
+        //Title alanı birden fazla mainword içeriyorsa  ayırıyoruz
+        String[] titleElements = title.split(" ");
+        for (int i = 0; i < titleElements.length; i++) {
+            System.out.println("subtitle :" + subTitle);
+            System.out.println("i :" + titleElements[i]);
+            System.out.println("i+1 :" + titleElements[i + 1]);
+            if (subTitle.contains(titleElements[i])) {
+                Assert.assertTrue(subTitle.contains(titleElements[i]));
+                System.out.println("sub title :" + subTitle + " başlık " + titleElements[i] + " kapsıyor");
+                break;
+            } else if (subTitle.contains(titleElements[i + 1])) {
+                Assert.assertTrue(subTitle.contains(titleElements[i + 1]));
+                System.out.println("sub title :" + subTitle + " başlık " + titleElements[i + 1] + " kapsıyor");
+                break;
+            } else System.out.println("subtitle :" + subTitle + " başlık değerlerini KAPSAMIYOR");
+            getScreenshot();
+            Assert.assertTrue(false);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

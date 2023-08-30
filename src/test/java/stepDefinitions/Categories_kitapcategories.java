@@ -1,18 +1,23 @@
 package stepDefinitions;
 
-import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.*;
 
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import screens.Screens;
 import utils.ConfigReader;
 import utils.Driver;
 import utils.ReusableMethods;
 
+import java.util.List;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static utils.ReusableMethods.*;
 
-public class kitapYurduUyeGirisi {
+public class Categories_kitapcategories {
     Screens screens = new Screens();
 
     @Given("kullanici siteye giris yapti")
@@ -99,4 +104,77 @@ scroll(Driver.getDriver(),2);
         assertTrue(screens.kitapCategories().kitapTitle.isDisplayed());
     }
 
+
+    //edebiyat modulu icin stepdef
+    @And("kullanici kitap catagoriese tiklar")
+    public void kullaniciKitapCatagorieseTiklar() {
+        screens.kitapCategories().kitap.click();
+        screens.kitapCategories().kitap.isDisplayed();
+
+    }
+
+    @And("kullanici edebiyat bolumune tiklar")
+    public void kullaniciEdebiyatBolumuneTiklar() {
+        screens.kitapCategories().edebiyat.click();
+        screens.kitapCategories().edebiyat.isDisplayed();
+
+
+    }
+
+    @And("kullanici kac adet kitap oldugunu dogrular")
+    public void kullaniciKacAdetKitapOldugunuDogrular() {
+        List<WebElement> categoryElements = Driver.getDriver().findElements(By.id("com.mobisoft.kitapyurdu:id/btnGoToProduct")); // Kategorileri temsil eden elementleri seçin
+
+        for (WebElement category : categoryElements) {
+           categoryElements.size();
+            System.out.println("categoryElements.size() = " + categoryElements.size());
+            System.out.println("category.getSize() = " + category.getSize());
+
+
+        }
+
+    }
+
+    @And("kullanici {string} tiklar")
+    public void kullaniciTiklar(String text) throws InterruptedException {
+        isElementVisibleWithText(text);
+        backToPreScreen();
+
+    }
+
+    //roman bolumu
+
+    @And("kullanici {string} a tiklar")
+    public void kullaniciATiklar(String roman) {
+        screens.kitapCategories().roman.click();
+    }
+
+    @And("kullanici ilk kitapi sepete ekler")
+    public void kullaniciIlkKitapiSepeteEkler() {
+        screens.kitapCategories().romanilkkitap.click();
+        screens.kitapCategories().girisolkayit.click();
+        screens.kitapCategories().mail.sendKeys("sibelinko33@gmail.com");
+        screens.kitapCategories().sifre.sendKeys("sibelcan33");
+        screens.kitapCategories().girisyap.click();
+    }
+
+
+
+    @And("options alanlarinin gorunurlugunu ve secilebilirligini dogrulanir")
+    public void optionsAlanlarininGorunurlugunuVeSecilebilirliginiDogrulanir() throws InterruptedException {
+        screens.kitapCategories().sirala.click();
+        List<WebElement>options=screens.kitapCategories().siralama;
+
+      //  System.out.println("options.get(0).getText() = " + options.get(0).getText());
+        for (WebElement element : options) {
+
+            System.out.println("element = " + element.getText());
+            Thread.sleep(1000);
+            assertTrue(element.isDisplayed());
+            System.out.println( element.getText()+" goruntuleniyor");
+            assertFalse(element.isSelected());
+            System.out.println( element.getText()+" secili degil");
+        }
+
+    }
 }

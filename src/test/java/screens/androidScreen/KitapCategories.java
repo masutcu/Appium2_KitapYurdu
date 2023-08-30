@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
 
 import java.time.Duration;
+import java.util.List;
 
 public class KitapCategories {
     public KitapCategories() {
@@ -110,6 +111,41 @@ public class KitapCategories {
     public WebElement BaşvuruKitapları;
     @FindBy(xpath = "//android.widget.TextView[@text='Din']")
     public WebElement Din;
+
+
+
+
+    //edebiay modulu screenleri
+
+    @FindBy (id = "com.mobisoft.kitapyurdu:id/btnGoToProduct")
+    public WebElement edebiyattumurunler;
+
+    @FindBy (xpath = "//android.widget.LinearLayout[@content-desc=\"Roman (çeviri) Tümü\"]/android.widget.TextView")
+    public WebElement roman;
+    @FindBy (xpath = "//android.widget.TextView[@text=\"Sepete Ekle\"]")
+    public WebElement romanilkkitap;
+
+
+    @FindBy (xpath = "//android.widget.TextView[@text='Giriş Yap / Üye Ol']")
+    public WebElement girisolkayit;
+
+
+    @FindBy (xpath = "com.mobisoft.kitapyurdu:id/loginButton")
+    public WebElement girisyap;
+
+
+
+    @FindBy (xpath = "com.mobisoft.kitapyurdu:id/textview_mail")
+    public WebElement mail;
+    @FindBy (xpath = "com.mobisoft.kitapyurdu:id/textview_password")
+    public WebElement sifre;
+
+    @FindBy (id = "com.mobisoft.kitapyurdu:id/sortButton")
+    public WebElement sirala;
+
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewSortType'])")
+    public List<WebElement> siralama;
+
 
 
 }

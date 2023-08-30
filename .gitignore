@@ -5,3 +5,4 @@ target/
 deviceConfig.properties
 runner/
 utils/Driver.java
+deviceConfig.properties

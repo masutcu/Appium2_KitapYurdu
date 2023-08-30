@@ -5,7 +5,7 @@ import screens.androidScreen.*;
 
 public class Screens {
 
-    public Screens(){
+    public Screens() {
     }
 
     private CategoriesScreen categoriesScreen;
@@ -13,6 +13,24 @@ public class Screens {
     private KitapYurdu kitapYurdu;
     private Puzzle_Yapboz_Screen puzzle_yapboz_screen;
     private KitapCategories kitapCategories;
+
+    private VariousScreen variousScreen;
+    private KirtasiyeScreens kirtasiyeScreens;
+    private CDScreen cdScreen;
+
+    public CDScreen cdScreen() {
+        if (cdScreen == null) {
+            cdScreen = new CDScreen();
+        }return cdScreen;
+    }
+
+
+    public VariousScreen variousScreen(){
+        if(variousScreen==null){
+            variousScreen=new VariousScreen();
+        }return variousScreen;
+    }
+
 
     public AllCategoriesScreen allCategoriesScreen(){
         if(allCategoriesScreen==null){
@@ -43,11 +61,22 @@ public class Screens {
         return this.puzzle_yapboz_screen;
     }
 
+
 public KitapCategories kitapCategories(){
         if (this.kitapCategories ==null){
             this.kitapCategories = new KitapCategories();
         }
         return  this.kitapCategories;
 }
+
+    public KirtasiyeScreens kirtasiyeScreens() {
+        if (this.kirtasiyeScreens == null) {
+            this.kirtasiyeScreens = new KirtasiyeScreens();
+        }
+        return this.kirtasiyeScreens;
+    }
+
+
+
 
 }
