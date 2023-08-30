@@ -22,6 +22,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
     Puzzle_Yapboz_Screen kitapYurdu=new Puzzle_Yapboz_Screen();
     @Then("Kitap Yurdu sitesine gidildigi dogrulandi")
     public void kitap_yurdu_sitesine_gidildigi_dogrulandi() {
+
         Driver.getDriver();
     }
 
