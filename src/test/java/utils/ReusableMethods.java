@@ -328,6 +328,7 @@ public class ReusableMethods {
 
     }
 
+
     /**
      * Bu metot sayfadaki ürünlerin texlerini tek tek alıp Set içine koyar. Scroll yaparak aşağıya iner.
      * Son ürünü de aldıktan sonra kapanır.
