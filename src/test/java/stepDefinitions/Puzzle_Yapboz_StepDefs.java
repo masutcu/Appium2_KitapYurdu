@@ -128,6 +128,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                         list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
                         elements.add(list.get(i).getAttribute("text"));
                         System.out.println("elements = " + elements);
+                        System.out.println("elements.size() = " + elements.size());
                     }catch (Exception e){
 
                     }
@@ -140,7 +141,8 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 }
 
             }while ((list.size()/4)==1);
-            break;
+                System.out.println("list.size() = " + list.size());
+                break;
             default:
                 break;
         }

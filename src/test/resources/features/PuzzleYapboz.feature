@@ -7,7 +7,7 @@ Feature: Puzzle_Yapboz_Menusu
     And "Kategoriler" bolumunde oldugu dogrulandi
     Then "Puzzle Yapboz" menusu tiklandi
     And "Puzzle Yapboz" bolumunde oldugu dogrulandi
-  @puzzle
+
   Scenario: Ahsap Puzzle Menusu Testi
     Given "Ahsap Puzzle" menusu tiklandi
     When "Ahşap Puzzle" bolumunde oldugu dogrulandi
@@ -16,7 +16,7 @@ Feature: Puzzle_Yapboz_Menusu
     Then "Lava" menusu tiklandi
     And Sayfada "yazilan" sayida urun oldugu dogrulandi
 
-
+  @puzzle
   Scenario: Çocuk Puzzle Menusu Testi
     Given "Çocuk Puzzle" menusu tiklandi
     When "Çocuk Puzzle" bolumunde oldugu dogrulandi
