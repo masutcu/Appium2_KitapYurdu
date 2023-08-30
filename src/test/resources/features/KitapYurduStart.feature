@@ -113,5 +113,17 @@ Feature: KitapYurdu App
   @OrderOptions
     Scenario: Option sorting by price test
       Given validate the products ranking "Pahalıdan Ucuza"
+      And scroll page
+
+    @scrollHorizantal
+    Scenario: Scroll sağa-sola deneme
+      Given User clicks on catagories
+      And User waits_ 2 _seconds
+      Then User clicks on aksesuar title
+      And User clicks on Kupa Ve Bardak title
+      And User clicks on Kitap Kurdu title
+      And User clicks on first product
+      Then scroll horizantal
+
 
 

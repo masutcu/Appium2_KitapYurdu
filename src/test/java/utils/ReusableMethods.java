@@ -165,6 +165,10 @@ public class ReusableMethods {
         int startY = size.getHeight() / 2 ;
         int endX = startX;
         int endY = (int) (size.getHeight()*0.25);
+        //buradaki 0,25 şu şekildedir; imleç ekranın ortasında yani 0,50 de,
+        // 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani aşağı  kayıyor.
+        // Eğer 0,75 deseydik ters yönde  kaydıracaktı. Ne kadar kaydıracağı ise değişiyor.
+
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
 
@@ -177,6 +181,32 @@ public class ReusableMethods {
                 addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Collections.singletonList(sequence));}
+        Thread.sleep(3000);
+    }
+
+    //Sağa kaydırma
+    public static void scrollHorizontal(AppiumDriver driver, int scroll) throws InterruptedException {
+        Dimension size = driver.manage().window().getSize();
+        int startX = size.getWidth() / 2 ;
+        int startY = size.getHeight() / 2 ;
+        int endX = (int) (size.getWidth()*0.25);
+        int endY = startY;
+        //buradaki 0,25 şu şekildedir; imleç ekranın ortasında yani 0,50 de,
+        // 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani aşağı  kayıyor.
+        // Eğer 0,75 deseydik ters yönde  kaydıracaktı. Ne kadar kaydıracağı ise değişiyor.
+
+
+        PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
+
+        for (int i = 0; i <scroll ; i++) {
+            Sequence sequence = new Sequence(finger1,1).
+                    addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(), startX, startY)).
+                    addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg())).
+                    addAction(new Pause(finger1, Duration.ofMillis(400))).
+                    addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(),endX,endY)).
+                    addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+            driver.perform(Collections.singletonList(sequence));}
         Thread.sleep(3000);
     }
 
