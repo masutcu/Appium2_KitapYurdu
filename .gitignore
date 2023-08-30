@@ -1,7 +1,7 @@
 .idea
 apps/
-target/
+target
 .gitignore
 deviceConfig.properties
-runner/
+runner
 utils/Driver.java
