@@ -166,7 +166,7 @@ public class ReusableMethods {
         int endX = startX;
         int endY = (int) (size.getHeight()*0.25);
         //buradaki 0,25 şu şekildedir; imleç ekranın ortasında yani 0,50 de,
-        // 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani aşağı  kayıyor.
+        // y ekseninde 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani aşağı  kayıyor.
         // Eğer 0,75 deseydik ters yönde  kaydıracaktı. Ne kadar kaydıracağı ise değişiyor.
 
 
@@ -192,7 +192,7 @@ public class ReusableMethods {
         int endX = (int) (size.getWidth()*0.25);
         int endY = startY;
         //buradaki 0,25 şu şekildedir; imleç ekranın ortasında yani 0,50 de,
-        // 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani aşağı  kayıyor.
+        // x ekseninde 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani sola  kayıyor.
         // Eğer 0,75 deseydik ters yönde  kaydıracaktı. Ne kadar kaydıracağı ise değişiyor.
 
 
