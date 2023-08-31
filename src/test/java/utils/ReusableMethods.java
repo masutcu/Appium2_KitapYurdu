@@ -3,23 +3,30 @@ package utils;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.commons.io.FileUtils;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
+import screens.Screens;
+import stepDefinitions.ScreenshotStepDefs;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
+import static java.lang.Double.parseDouble;
 
 public class ReusableMethods {
+
 
     public static void tapOnElementWithText(String text) {
         List<WebElement> mobileElementList = Driver.getDriver().findElements(By.className("android.widget.TextView"));
@@ -165,7 +172,7 @@ public class ReusableMethods {
         Sequence sequence = new Sequence(finger1,1).
                 addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(), startX, startY)).
                 addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg())).
-                addAction(new Pause(finger1, Duration.ofMillis(200))).
+                addAction(new Pause(finger1, Duration.ofMillis(400))).
                 addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(),endX,endY)).
                 addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
@@ -203,11 +210,10 @@ public class ReusableMethods {
             System.out.println("element.getText() = " + element.getText());
             if (element.getText().contains(text)) {
                 System.out.println("element.getText()111 = " + element.getText());
-
                 element.click();
                 break;
             } else ReusableMethods.scroll(Driver.getDriver(), 1);
-            break;
+
         }
 
     }
@@ -239,8 +245,137 @@ public class ReusableMethods {
         }
 
     }
+    public static void getScreenshot() throws IOException {
+        //after verification take screenshot
+        //I use this code to take a screenshot when needed
+        // naming the screenshot with the current date to avoid duplication
+
+        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+
+        // TakesScreenshot is an interface of selenium that takes the screenshot
+        TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
+        File source = ts.getScreenshotAs(OutputType.FILE);
+
+        // full path to the screenshot location
+        String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + date + ".png";
+        File finalDestination = new File(target);
+
+        // save the screenshot to the path given
+        FileUtils.copyFile(source, finalDestination);
+    }
+    public static void validateCompabilitiyOfSubTitleWithTheTitle(String subTitle, String title) throws IOException {
+        //Title alanı birden fazla mainword içeriyorsa  ayırıyoruz
+        String[] titleElements = title.split(" ");
+        for (int i = 0; i < titleElements.length; i++) {
+            System.out.println("subtitle :" + subTitle);
+            System.out.println("i :" + titleElements[i]);
+            System.out.println("i+1 :" + titleElements[i + 1]);
+            if (subTitle.contains(titleElements[i])) {
+                Assert.assertTrue(subTitle.contains(titleElements[i]));
+                System.out.println("sub title :" + subTitle + " başlık " + titleElements[i] + " kapsıyor");
+                break;
+            } else if (subTitle.contains(titleElements[i + 1])) {
+                Assert.assertTrue(subTitle.contains(titleElements[i + 1]));
+                System.out.println("sub title :" + subTitle + " başlık " + titleElements[i + 1] + " kapsıyor");
+                break;
+            } else System.out.println("subtitle :" + subTitle + " başlık değerlerini KAPSAMIYOR");
+            getScreenshot();
+            Assert.assertTrue(false);
+        }
+    }
+
+    /**
+     * Bu method Sıralama seçenekleri arasında 'Pahalıdan Ucuza' veya 'Ucuzdan Pahalıya'
+     * şeklindeki parametreler ile sıralanan ürünlerin doğru şekilde görüntülenip görüntülenmediğini doğrular
+     * @param option alanına 'Pahalıdan Ucuza' veya 'Ucuzdan Pahalıya' gelmelidir.
+     */
+    public static void validateProductsSortingByPrice(String option)  {
+        List<WebElement> priceList1= Driver.getDriver().findElements(By.id(("com.mobisoft.kitapyurdu:id/textViewLeftPrice")));
+        int sizeOfList=priceList1.size();
 
 
+        if(option.equals("Ucuzdan Pahalıya")){
+
+            int count=0;
+            do {
+                for (int n = 0; n < priceList1.size()-1; n++) {
+                    String price1 = priceList1.get(n).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price1 = " + price1);
+                    String price2 = priceList1.get(n+1).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price2 = " + price2);
+                    double first= parseDouble(price1);
+                    double second= parseDouble(price2);
+                    Assert.assertTrue(first<=second);
+                }count++;
+            } while (count==sizeOfList-1);
+
+        } else if (option.equals("Pahalıdan Ucuza")) {
+
+
+            int count=0;
+            do {
+                for (int n = 0; n < priceList1.size()-1; n++) {
+                    String price1 = priceList1.get(n).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price1 = " + price1);
+                    String price2 = priceList1.get(n+1).getText().replace("TL","").replace(",",".").trim();
+                    System.out.println("price2 = " + price2);
+                    double first= parseDouble(price1);
+                    double second= parseDouble(price2);
+                    Assert.assertTrue(first>=second);
+                }count++;
+            } while (count==sizeOfList-1);
+        } else System.out.println("Parametreniz hatalı olabilir, Kontrol edin");
+
+    }
+
+
+    /**
+     * Bu metot sayfadaki ürünlerin texlerini tek tek alıp Set içine koyar. Scroll yaparak aşağıya iner.
+     * Son ürünü de aldıktan sonra kapanır.
+     * @param locate Ürün sayısını gösteren text elementinin locate'dir. Xpath olarak verirseniz metinden
+     *               sadece sayıyı alıp Set'in size ile karşılaştırır.
+     * @throws InterruptedException
+     */
+    public static void urunDogrula(String locate) throws InterruptedException {
+        Set<String> elements = new HashSet();
+        List<WebElement> list = null;
+        String count = Driver.getDriver().findElement(By.xpath(locate)).getText();
+        int actualElementSize = -1;
+
+        int expectedElementSize;
+        do {
+            for(expectedElementSize = 0; expectedElementSize < 4; ++expectedElementSize) {
+                try {
+                    list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
+                    elements.add(((WebElement)list.get(expectedElementSize)).getAttribute("text"));
+                } catch (Exception var7) {
+                }
+            }
+
+            if ((list.size() / 4) != 1) {
+                break;
+            }
+
+            scroll(Driver.getDriver(), 1);
+            actualElementSize = elements.size();
+            expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
+
+        } while(actualElementSize != expectedElementSize);
+
+        Assert.assertEquals(actualElementSize , expectedElementSize);
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

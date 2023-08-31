@@ -25,6 +25,9 @@ public class AllCategoriesScreen extends KitapYurduMainScreen{
     public WebElement duvarAksesuarlariIcon;
     @FindBy(xpath = "(//android.widget.ImageView)[10]")
     public WebElement ahsapUrunlerIcon;
+    @FindBy(xpath = "//android.widget.TextView[@content-desc=\"Kitapyurdu\"]")
+    public WebElement appKitapYurduIcon;
+
 
 
 }

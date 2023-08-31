@@ -10,4 +10,6 @@ public class KitapYurduMainScreen {
     public KitapYurduMainScreen(){
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver(), Duration.ofSeconds(30)), this);
     }
+
+
 }

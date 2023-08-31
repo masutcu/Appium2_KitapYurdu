@@ -22,4 +22,15 @@ public class Puzzle_Yapboz_Screen extends KitapYurdu{
     public WebElement ucyuzParcaTitle;
     @FindBy( xpath= "(//android.view.ViewGroup[@resource-id='com.mobisoft.kitapyurdu:id/btnCategoryName'])[14]")
     public WebElement ucyuzParcaMenu;
+    @FindBy( xpath= "//android.widget.TextView[@text='Lava']")
+    public WebElement lava;
+    @AndroidFindBy( uiAutomator= "new UiSelector().text(\"Çocuk Puzzle\")")
+    public WebElement cocukPuzzle;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Çocuk Puzzle\")")
+    public WebElement cocukPuzzleTitle;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"6-48 PARÇA\")")
+    public WebElement altiKirksekizParca;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"6-48 PARÇA\")")
+    public WebElement altiKirksekizParcaTitle;
+
 }

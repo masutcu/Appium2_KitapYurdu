@@ -1,15 +1,21 @@
 package stepDefinitions;
 
+import io.appium.java_client.AppiumBy;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import screens.Screens;
+import utils.Driver;
 import utils.ReusableMethods;
 
-public class AllCategoriesSteps extends ReusableMethods {
-    Screens screen=new Screens();
+import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
+public class AllCategoriesSteps extends ReusableMethods {
+    Screens screen = new Screens();
 
 
     @Then("User validate the screen title -Tüm Kategoriler")
@@ -19,10 +25,10 @@ public class AllCategoriesSteps extends ReusableMethods {
 
     @Given("User clicks on {string} in order")
     public void userClicksOnInOrder(String secenek) {
-        switch(secenek){
+        switch (secenek) {
             case "Kitap":
-            tapOn(screen.allCategoriesScreen().kitapIcon);
-            break;
+                tapOn(screen.allCategoriesScreen().kitapIcon);
+                break;
             case "Dergi":
                 tapOn(screen.allCategoriesScreen().dergiIcon);
                 break;
@@ -47,7 +53,8 @@ public class AllCategoriesSteps extends ReusableMethods {
             case "Ahsap urunler":
                 tapOn(screen.allCategoriesScreen().ahsapUrunlerIcon);
                 break;
-        } wait(2);
+        }
+        wait(2);
     }
 
 
@@ -60,5 +67,52 @@ public class AllCategoriesSteps extends ReusableMethods {
     @Then("verifies_ {string}  _visibility")
     public void verifies__visibility(String categories) throws InterruptedException {
         isElementVisibleWithText(categories);
+    }
+
+
+    @Then("User clicks on filmTitle")
+    public void userClicksOnFilmTitle() {
+        tapOn(screen.variousScreen().filmTitle);
+    }
+
+    @Then("User clicks on cdTitle")
+    public void userClicksOnCdTitle() {
+        tapOn(screen.variousScreen().cdTitle);
+    }
+
+
+    @Given("User cliks on _Tüm Ürünleri Göster_")
+    public void userCliksOn_TumUrunleriGoster_() {
+        tapOn(screen.cdScreen().tumUrunleriGoster);
+    }
+
+    @Then("User clicks on orderButton")
+    public void userClicksOnOrderButton() {
+        tapOn(screen.cdScreen().orderButton);
+    }
+
+
+    @And("validete  all order options are display and un-selected")
+    public void valideteAllOrderOptionsAreDisplayAndUnSelected() {
+        List<WebElement> options = screen.cdScreen().orderOptions;
+        System.out.println("options.get(1).getText() = " + options.get(1).getText());
+
+        for (WebElement option : options) {
+            System.out.println(option.getText());
+            wait(1);
+            Assert.assertTrue(option.isDisplayed());
+            System.out.println(option.getText()+" görüntüleniyor");
+            Assert.assertFalse(option.isSelected());
+            System.out.println(option.getText()+" seçili değildir");
+
+        }
+
+    }
+
+
+    @Then("validate the products ranking {string}")
+    public void validateTheProductsRanking(String arg0) {
+        tapOnElementWithText(arg0);
+        validateProductsSortingByPrice(arg0);
     }
 }

@@ -47,11 +47,13 @@ public class KirtasiyeStepDefs {
 
     @And("kullanici onceki sayfaya geri doner")
     public void kullaniciOncekiSayfayaGeriDoner() {
+
         backToPreScreen();
     }
 
     @And("kullanici {string} bilgilerini dogrular")
     public void kullaniciBilgileriniDogrular(String text) {
+
         Assert.assertTrue(isElementPresent(text));
     }
 
