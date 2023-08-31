@@ -10,6 +10,9 @@ import screens.Screens;
 import utils.Driver;
 import utils.ReusableMethods;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static utils.ReusableMethods.*;
 
 public class KirtasiyeStepDefs {
@@ -60,21 +63,21 @@ public class KirtasiyeStepDefs {
     @Then("kullanici urun resimlerini gorur")
     public void kullaniciUrunResimleriniGorur() {
 
-        for (WebElement resim: screens.kirtasiyeScreens().urunResimleri){
+        for (WebElement resim : screens.kirtasiyeScreens().urunResimleri) {
             Assert.assertTrue(isElementPresent(resim));
         }
     }
 
     @Then("kullanici urun fiyatlarini gorur")
     public void kullaniciUrunFiyatlariniGorur() {
-        for (WebElement fiyat: screens.kirtasiyeScreens().urunfiyatlari){
+        for (WebElement fiyat : screens.kirtasiyeScreens().urunfiyatlari) {
             Assert.assertTrue(isElementPresent(fiyat));
         }
     }
 
     @Then("kullanici sepete ekle butonlarini gorur")
     public void kullaniciSepeteEkleButonlariniGorur() {
-        for (WebElement sepet: screens.kirtasiyeScreens().sepetButtons){
+        for (WebElement sepet : screens.kirtasiyeScreens().sepetButtons) {
             Assert.assertTrue(isElementPresent(sepet));
         }
     }
@@ -91,5 +94,73 @@ public class KirtasiyeStepDefs {
         System.out.println("tam mesaj = " + message);
     }
 
+    @Then("kullanici kitap sayisini dogrular")
+    public void kullaniciKitapSayisiniDogrular() throws InterruptedException {
+
+        //urunDogrula("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/count']");
+
+        //System.out.println("toplamUrunSayisi() = " + toplamUrunSayisi());
+/*
+        List<String> urunListesi = new ArrayList<>();
+
+        int a = 0;
+        int b = 0;
+
+        do {
+            a = urunListesi.size();
+
+            for (int i = 0; i < screens.kirtasiyeScreens().urunlerWebElements.size(); i++) {
+
+                if (!urunListesi.contains(screens.kirtasiyeScreens().urunlerWebElements.get(i).getText())) {
+                    urunListesi.add(screens.kirtasiyeScreens().urunlerWebElements.get(i).getText());
+                }
+            }
+
+            scroll(Driver.getDriver(),1);
+
+            b = urunListesi.size();
+
+        } while (a < b);
+
+        System.out.println("TOPLAM URUN SAYISI: " + urunListesi.size());
+        urunListesi.forEach(System.out::println);
+
+        METOT:
+
+         public static int toplamUrunSayisi() throws InterruptedException {
+
+        List<WebElement> urunlerWebElements;
+
+        List<String> urunListesi = new ArrayList<>();
+
+        int a = 0;
+        int b = 0;
+
+        do {
+            urunlerWebElements = Driver.getDriver().findElements(By.id("com.mobisoft.kitapyurdu:id/textViewProductName"));
+
+            a = urunListesi.size();
+
+            for (int i = 0; i < urunlerWebElements.size(); i++) {
+
+                if (!urunListesi.contains(urunlerWebElements.get(i).getText())) {
+                    urunListesi.add(urunlerWebElements.get(i).getText());
+                }
+            }
+
+            scroll(Driver.getDriver(), 1);
+
+            b = urunListesi.size();
+
+        } while (a < b);
+
+        System.out.println("TOPLAM URUN SAYISI: " + urunListesi.size());
+        urunListesi.forEach(System.out::println);
+
+        return urunListesi.size();
+    }
+
+*/
+    }
 }
 
