@@ -115,4 +115,39 @@ public class AllCategoriesSteps extends ReusableMethods {
         tapOnElementWithText(arg0);
         validateProductsSortingByPrice(arg0);
     }
+
+    @And("scroll page")
+    public void scrollPage() throws InterruptedException {
+        scroll(Driver.getDriver(),1);
+    }
+
+    @Then("User clicks on aksesuar title")
+    public void userClicksOnAksesuarTitle() {
+        tapOnElementWithText("Aksesuar");
+        wait(1);
+    }
+
+    @And("User clicks on Kupa Ve Bardak title")
+    public void userClicksOnKupaVeBardakTitle() {
+        tapOnElementWithText("Kupa ve Bardak");
+        wait(1);
+    }
+
+    @And("User clicks on Kitap Kurdu title")
+    public void userClicksOnKitapKurduTitle() {
+        tapOnElementWithText("Kitap Kurdu");
+        wait(1);
+    }
+
+    @And("User clicks on first product")
+    public void userClicksOnFirstProduct() {
+    tapOn(screen.cdScreen().productList.get(1));
+        wait(1);
+
+    }
+
+    @Then("scroll horizantal")
+    public void scrollHorizantal() throws InterruptedException {
+        scrollHorizontal(Driver.getDriver(),1);
+    }
 }
