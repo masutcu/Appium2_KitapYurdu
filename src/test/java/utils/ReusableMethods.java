@@ -326,8 +326,7 @@ public class ReusableMethods {
 
         if(option.equals("Ucuzdan Pahalıya")){
 
-            int count=0;
-            do {
+
                 for (int n = 0; n < priceList1.size()-1; n++) {
                     String price1 = priceList1.get(n).getText().replace("TL","").replace(",",".").trim();
                     System.out.println("price1 = " + price1);
@@ -336,14 +335,13 @@ public class ReusableMethods {
                     double first= parseDouble(price1);
                     double second= parseDouble(price2);
                     Assert.assertTrue(first<=second);
-                }count++;
-            } while (count==sizeOfList-1);
+
+            }
 
         } else if (option.equals("Pahalıdan Ucuza")) {
 
 
-            int count=0;
-            do {
+
                 for (int n = 0; n < priceList1.size()-1; n++) {
                     String price1 = priceList1.get(n).getText().replace("TL","").replace(",",".").trim();
                     System.out.println("price1 = " + price1);
@@ -352,8 +350,8 @@ public class ReusableMethods {
                     double first= parseDouble(price1);
                     double second= parseDouble(price2);
                     Assert.assertTrue(first>=second);
-                }count++;
-            } while (count==sizeOfList-1);
+
+            }
         } else System.out.println("Parametreniz hatalı olabilir, Kontrol edin");
 
     }

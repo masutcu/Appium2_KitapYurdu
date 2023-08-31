@@ -112,7 +112,7 @@ Feature: KitapYurdu App
 
   @OrderOptions
     Scenario: Option sorting by price test
-      Given validate the products ranking "Pahalıdan Ucuza"
+      Given validate the products ranking "Ucuzdan Pahalıya"
       And scroll page
 
     @scrollHorizantal
