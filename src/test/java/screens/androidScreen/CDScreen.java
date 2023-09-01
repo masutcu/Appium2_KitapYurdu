@@ -17,5 +17,9 @@ public class CDScreen extends KitapYurduMainScreen {
     public WebElement fromExpensiveToCheep;
     @FindBy(id = "com.mobisoft.kitapyurdu:id/textViewLeftPrice")
     public List<WebElement> priceList;
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/productImage")
+    public List<WebElement> productList;
+
+
 
 }

@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static utils.ReusableMethods.scroll;
-import static utils.ReusableMethods.urunDogrula;
+import static utils.ReusableMethods.*;
 
 
 public class Puzzle_Yapboz_StepDefs extends Screens {
@@ -51,6 +50,12 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             case "6-48 PARÇA":
                 kitapYurdu.altiKirksekizParcaTitle.getText().contains("6-48 PARÇA");
                 break;
+                case "Ahşap Puzzle (1000 Parça)":
+                kitapYurdu.ahsapBinParcaText.getText().contains("Ahşap Puzzle (1000 Parça)");
+                break;
+                case "Türk Sanatı Serisi":
+                kitapYurdu.turkSanatEseriText.getText().contains("Türk Sanatı Serisi");
+                break;
             default:
                 break;
         }
@@ -66,6 +71,9 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 break;
             case "Ahsap Puzzle":
             kitapYurdu.ahsapPuzzleMenu.click();
+                break;
+                case "Türk Sanatı Serisi":
+                kitapYurdu.turkSanatEseri.click();
                 break;
             case "300 Parça":
                try {
@@ -87,6 +95,9 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 break;
                 case "6-48 PARÇA":
                 kitapYurdu.altiKirksekizParca.click();
+                break;
+                case "Ahşap Puzzle (1000 Parça)":
+                kitapYurdu.ahsapBinParca.click();
                 break;
             default:
                 break;
@@ -151,5 +162,14 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
     }
 
+    @And("Urunu tikladi")
+    public void urunuTikladi() {
+        kitapYurdu.kaplumbagaTerbiyecisi.click();
+    }
+
+    @And("Urunu slip yapti")
+    public void urunuSlipYapti() throws InterruptedException {
+        scrollHorizontal(Driver.getDriver(), 5);
+    }
 }
 
