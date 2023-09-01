@@ -32,5 +32,14 @@ public class Puzzle_Yapboz_Screen extends KitapYurdu{
     public WebElement altiKirksekizParca;
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"6-48 PARÇA\")")
     public WebElement altiKirksekizParcaTitle;
-
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Ahşap Puzzle (1000 Parça)\")")
+    public WebElement ahsapBinParca;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Ahşap Puzzle (1000 Parça)\")")
+    public WebElement ahsapBinParcaText;
+    @AndroidFindBy(xpath = "(//android.widget.ImageView[@resource-id='com.mobisoft.kitapyurdu:id/productImage'])[1]")
+    public WebElement kaplumbagaTerbiyecisi;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Türk Sanatı Serisi\")")
+    public WebElement turkSanatEseri;
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Türk Sanatı Serisi\")")
+    public WebElement turkSanatEseriText;
 }
