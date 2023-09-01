@@ -96,18 +96,15 @@ Feature: KitapYurdu App
       | Yabancı Müzik |
 
   @OrderOptions
-  Scenario: 'CD' field test
+  Scenario: 'CD' field Order Options test
     Given User clicks on catagories
     And User waits_ 2 _seconds
     Then User clicks on Various title
     And User waits_ 2 _seconds
     Then User clicks on cdTitle
     And User waits_ 2 _seconds
-
-  @OrderOptions
-  Scenario: Order Options test
-    Given User cliks on _Tüm Ürünleri Göster_
-    Then User clicks on orderButton
+    Then User cliks on _Tüm Ürünleri Göster_
+    And User clicks on orderButton
     And validete  all order options are display and un-selected
 
   @OrderOptions
