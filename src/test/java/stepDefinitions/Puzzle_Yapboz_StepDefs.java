@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import screens.Screens;
 import screens.androidScreen.Puzzle_Yapboz_Screen;
 import utils.Driver;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +53,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 kitapYurdu.altiKirksekizParcaTitle.getText().contains("6-48 PARÇA");
                 break;
                 case "Ahşap Puzzle (1000 Parça)":
-                kitapYurdu.ahsapBinParcaText.getText().contains("Ahşap Puzzle (1000 Parça)");
+                kitapYurdu.ahsapBinParcaText.getText().contains("1.000 Parça Ahşap Puzzle");
                 break;
                 case "Türk Sanatı Serisi":
                 kitapYurdu.turkSanatEseriText.getText().contains("Türk Sanatı Serisi");
@@ -69,7 +71,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             case "Puzzle Yapboz":
             kitapYurdu.puzzleYapboz.click();
                 break;
-            case "Ahsap Puzzle":
+            case "Ahşap Puzzle":
             kitapYurdu.ahsapPuzzleMenu.click();
                 break;
                 case "Türk Sanatı Serisi":
@@ -96,7 +98,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 case "6-48 PARÇA":
                 kitapYurdu.altiKirksekizParca.click();
                 break;
-                case "Ahşap Puzzle (1000 Parça)":
+                case "1.000 Parça Ahşap Puzzle":
                 kitapYurdu.ahsapBinParca.click();
                 break;
             default:
@@ -156,10 +158,6 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
         }
 
-
-
-
-
     }
 
     @And("Urunu tikladi")
@@ -167,9 +165,31 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
         kitapYurdu.kaplumbagaTerbiyecisi.click();
     }
 
-    @And("Urunu slip yapti")
-    public void urunuSlipYapti() throws InterruptedException {
+
+    @And("Urunu swipe yapti")
+    public void urunuSwipeYapti() throws InterruptedException {
         scrollHorizontal(Driver.getDriver(), 5);
+    }
+
+    @And("Sayfada kac urun oldugu yazdirildi")
+    public void sayfadaKacUrunOlduguYazdirildi() throws InterruptedException {
+        List<WebElement> urunlerWebElements;
+        List<String> urunListesi = new ArrayList<>();
+        int a = 0;
+        int b = 0;
+        do {
+            urunlerWebElements = Driver.getDriver().findElements(By.id("com.mobisoft.kitapyurdu:id/textViewProductName"));
+            a = urunListesi.size();
+            for (int i = 0; i < urunlerWebElements.size(); i++) {
+                if (!urunListesi.contains(urunlerWebElements.get(i).getText())) {
+                    urunListesi.add(urunlerWebElements.get(i).getText());
+                }
+            }
+            scroll(Driver.getDriver(), 1);
+            b = urunListesi.size();
+        } while (a < b);
+        System.out.println("TOPLAM URUN SAYISI: " + urunListesi.size());
+        urunListesi.forEach(System.out::println);
     }
 }
 
