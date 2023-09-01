@@ -26,4 +26,24 @@ public class KirtasiyeScreens extends KitapYurduMainScreen {
 
     @FindBy(xpath = "//android.widget.Toast")
     public WebElement popUpMessage;
+
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/textViewProductName")
+    public List<WebElement> urunlerWebElements;
+
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/count")
+    public WebElement expectedUrunSayisi;
+
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/minValue")
+    public WebElement minValue;
+
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/maxValue")
+    public WebElement maxValue;
+
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/ok")
+    public WebElement okButtonFiltre;
+
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/textViewRightPrice")
+    public List<WebElement> urunlerinFiyatlari;
+
+
 }
