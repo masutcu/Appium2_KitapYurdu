@@ -37,6 +37,9 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             case "Kategoriler":
                 kitapYurdu.tumKategoriler.getText().contains("Kategoriler");
                 break;
+                case "Şehirler ve Yapılar Serisi":
+                kitapYurdu.sehirlerYapilarTitle.getText().contains("Kategoriler");
+                break;
                 case "Puzzle Yapboz":
                kitapYurdu.puzzleYapbozTitle.getText().contains("Puzzle");
                 break;
@@ -71,6 +74,12 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
             case "Puzzle Yapboz":
             kitapYurdu.puzzleYapboz.click();
                 break;
+                case "Şehirler ve Yapılar Serisi":
+                kitapYurdu.sehirlerYapilar.click();
+                break;
+                case "Panaromik":
+                kitapYurdu.panaromik.click();
+                break;
             case "Ahşap Puzzle":
             kitapYurdu.ahsapPuzzleMenu.click();
                 break;
@@ -78,11 +87,6 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
                 kitapYurdu.turkSanatEseri.click();
                 break;
             case "300 Parça":
-               try {
-                   scroll(Driver.getDriver(),1);
-               }finally {
-                   scroll(Driver.getDriver(),1);
-               }
             kitapYurdu.ucyuzParcaMenu.click();
                 break;
             case "Lava":
@@ -128,10 +132,11 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
     @And("Sayfada {string} sayida urun oldugu dogrulandi")
     public void sayfadaSayidaUrunOlduguDogrulandi(String text) throws InterruptedException {
-            String bolumBasligi= kitapYurdu.altiKirksekizParca.getText();
-        System.out.println("bolumBasligi = " + bolumBasligi);
+        String bolumBasligi = Driver.getDriver().findElement(By.xpath("//android.widget.TextView[@text='"+text+"']")).getAttribute("text");
         if (bolumBasligi.equals("6-48 PARÇA")) {
             urunDogrula("//android.widget.TextView[@text='12 ürün listelendi']");
+        } else if (bolumBasligi.equals("Şehirler ve Yapılar Serisi")) {
+            urunDogrula("//android.widget.TextView[@text='17 ürün listelendi']");
         }else {
            // "Lava":
             Set<String > elements= new HashSet<>();
@@ -168,7 +173,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
     @And("Urunu swipe yapti")
     public void urunuSwipeYapti() throws InterruptedException {
-        scrollHorizontal(Driver.getDriver(), 5);
+        swipe(Driver.getDriver(), 6);
     }
 
     @And("Sayfada kac urun oldugu yazdirildi")

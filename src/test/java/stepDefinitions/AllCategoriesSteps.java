@@ -148,6 +148,6 @@ public class AllCategoriesSteps extends ReusableMethods {
 
     @Then("scroll horizantal")
     public void scrollHorizantal() throws InterruptedException {
-        scrollHorizontal(Driver.getDriver(),1);
+        swipe(Driver.getDriver(),1);
     }
 }
