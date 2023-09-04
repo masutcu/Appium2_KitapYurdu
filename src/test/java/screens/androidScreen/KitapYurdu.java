@@ -12,7 +12,7 @@ public class KitapYurdu {
     public KitapYurdu(){
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver(), Duration.ofSeconds(30)),this);
     }
-    @FindBy(id = "//com.mobisoft.kitapyurdu:id/imageViewBigLogo")
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/imageViewBigLogo")
     public WebElement logo;
     @FindBy(xpath = "(//android.widget.ImageView[@checkable='false'])[15]")
     public WebElement searchImage;
