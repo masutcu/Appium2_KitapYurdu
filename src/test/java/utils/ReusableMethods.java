@@ -115,7 +115,7 @@ public class ReusableMethods {
         Sequence sequence = new Sequence(finger1, 1)
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerOfElement))
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(finger1, Duration.ofMillis(200)))
+                .addAction(new Pause(finger1, Duration.ofMillis(100)))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Collections.singletonList(sequence));
@@ -184,11 +184,11 @@ public class ReusableMethods {
     }
 
     //Sağa kaydırma
-    public static void scrollHorizontal(AppiumDriver driver, int scroll) throws InterruptedException {
+    public static void swipe(AppiumDriver driver, int scroll) throws InterruptedException {
         Dimension size = driver.manage().window().getSize();
         int startX = size.getWidth() / 2 ;
         int startY = size.getHeight() / 2 ;
-        int endX = (int) (size.getWidth()*0.25);
+        int endX = (int) (size.getWidth()*0.01);
         int endY = startY;
         //buradaki 0,25 şu şekildedir; imleç ekranın ortasında yani 0,50 de,
         // x ekseninde 0,25 seçtiğimizde 0,50 den 0,25 e çekiyor yani sola  kayıyor.
@@ -201,8 +201,8 @@ public class ReusableMethods {
             Sequence sequence = new Sequence(finger1,1).
                     addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(), startX, startY)).
                     addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg())).
-                    addAction(new Pause(finger1, Duration.ofMillis(400))).
-                    addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(),endX,endY)).
+                    addAction(new Pause(finger1, Duration.ofMillis(100))).
+                    addAction(finger1.createPointerMove(Duration.ofMillis(400),PointerInput.Origin.viewport(),endX,endY)).
                     addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
             driver.perform(Collections.singletonList(sequence));}
@@ -366,28 +366,32 @@ public class ReusableMethods {
     public static void urunDogrula(String locate) throws InterruptedException {
         Set<String> elements = new HashSet();
         List<WebElement> list = null;
-        String count = Driver.getDriver().findElement(By.xpath(locate)).getText();
-        int actualElementSize = -1;
+        String count = Driver.getDriver().findElement(By.xpath(locate)).getAttribute("text");
+        Integer expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
+        System.out.println("count = " + expectedElementSize);
+        Integer actualElementSize = -1;
 
-        int expectedElementSize;
+        int size=0;
         do {
-            for(expectedElementSize = 0; expectedElementSize < 4; ++expectedElementSize) {
+            for(size = 0; size < 4; ++size) {
                 try {
                     list = Driver.getDriver().findElements(By.xpath("//android.widget.TextView[@resource-id='com.mobisoft.kitapyurdu:id/textViewProductName']"));
-                    elements.add(((WebElement)list.get(expectedElementSize)).getAttribute("text"));
+                    elements.add(((WebElement)list.get(size)).getAttribute("text"));
                 } catch (Exception var7) {
                 }
             }
 
-            if ((list.size() / 4) != 1) {
+            if (expectedElementSize.equals(actualElementSize)) {
                 break;
             }
 
             scroll(Driver.getDriver(), 1);
             actualElementSize = elements.size();
-            expectedElementSize = Integer.parseInt(count.replaceAll("[^0-9]", ""));
+
 
         } while(actualElementSize != expectedElementSize);
+        System.out.println("actualElementSize = " + actualElementSize);
+        System.out.println("expectedElementSize = " + expectedElementSize);
 
         Assert.assertEquals(actualElementSize , expectedElementSize);
     }

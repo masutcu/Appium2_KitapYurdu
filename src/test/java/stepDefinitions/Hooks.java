@@ -30,12 +30,14 @@ public class Hooks {
   //              .usingDriverExecutable(new File("C://Users//Lenovo//.appium//node_modules//appium-uiautomator2-driver//node_modules//util-deprecate//node.js"))
                 .withIPAddress("127.0.0.1")
                 .usingPort(4723)
-                .withTimeout(Duration.ofSeconds(30));
+                .withTimeout(Duration.ofSeconds(40));
+
 
 
         appiumServer = AppiumDriverLocalService.buildService(builder);
 
         appiumServer.start();
+
 
 
         int maxWaitTimeSeconds  = 120;
