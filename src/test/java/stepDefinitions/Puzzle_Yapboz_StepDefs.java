@@ -27,6 +27,8 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
         Driver.getDriver();
     }
 
+
+
     @When("Kategoriler ikonu tiklandi")
     public void kategoriler_ikonu_tiklandi() {
         kitapYurdu.kategoriler.click();
