@@ -18,7 +18,7 @@ import static utils.Driver.isAppiumServerRunning;
 
 public class Hooks {
 
-    public static AppiumDriverLocalService appiumServer;
+    public static AppiumDriverLocalService server;
 
 
     @Before
@@ -26,18 +26,24 @@ public class Hooks {
 
         AppiumServiceBuilder builder = new AppiumServiceBuilder();
         builder
-  //                .withAppiumJS(new File("C:\\Users\\Mustafa\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
-  //              .usingDriverExecutable(new File("C://Users//Lenovo//.appium//node_modules//appium-uiautomator2-driver//node_modules//util-deprecate//node.js"))
+//                .withAppiumJS(new File("C:\\Users\\Mustafa\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+//                .usingDriverExecutable(new File("C:\\Users\\Mustafa\\.appium\\node_modules\\appium-reporter-plugin\\node_modules\\util-deprecate\\node.js"))
                 .withIPAddress("127.0.0.1")
                 .usingPort(4723)
-                .withTimeout(Duration.ofSeconds(40));
+                .withTimeout(Duration.ofSeconds(30));
 
 
+        try {
+            server = AppiumDriverLocalService.buildService(builder);
+        } catch (Exception e) {
+            System.out.println("APPIUM SERVER NOT ASSIGN");
+        }
 
-        appiumServer = AppiumDriverLocalService.buildService(builder);
-
-        appiumServer.start();
-
+        try {
+            server.start();
+        } catch (Exception e) {
+            System.out.println("APPIUM SERVER NOT START");
+        }
 
 
         int maxWaitTimeSeconds  = 120;

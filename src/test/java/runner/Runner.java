@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "stepDefinitions",
 
-        tags = "@uyumluluk1",
+        tags = "@scrollHorizantal",
 
         dryRun = false
 
