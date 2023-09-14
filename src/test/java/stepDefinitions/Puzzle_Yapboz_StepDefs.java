@@ -35,7 +35,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
     public void bolumundeOlduguDogrulandi(String string) {
         switch (string){
             case "Kategoriler":
-                kitapYurdu.tumKategoriler.getText().contains("Kategoriler");
+                kitapYurdu.tumKategoriler.getText().contains("Tüm Kategoriler");
                 break;
                 case "Şehirler ve Yapılar Serisi":
                 kitapYurdu.sehirlerYapilarTitle.getText().contains("Kategoriler");

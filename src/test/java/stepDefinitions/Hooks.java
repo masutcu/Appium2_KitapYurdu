@@ -29,9 +29,17 @@ public class Hooks {
                 .withTimeout(Duration.ofSeconds(30));
 
 
-        server = AppiumDriverLocalService.buildService(builder);
+        try {
+            server = AppiumDriverLocalService.buildService(builder);
+        } catch (Exception e) {
+            System.out.println("APPIUM SERVER NOT ASSIGN");
+        }
 
-        server.start();
+        try {
+            server.start();
+        } catch (Exception e) {
+            System.out.println("APPIUM SERVER NOT START");
+        }
 
 
         int maxWaitTimeSeconds  = 120;
