@@ -27,7 +27,6 @@ import static java.lang.Double.parseDouble;
 
 public class ReusableMethods {
 
-
     public static void tapOnElementWithText(String text) {
         List<WebElement> mobileElementList = Driver.getDriver().findElements(By.className("android.widget.TextView"));
         for (WebElement page: mobileElementList) {
