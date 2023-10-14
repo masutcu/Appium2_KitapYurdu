@@ -25,6 +25,9 @@ public class AllCategoriesSteps extends ReusableMethods {
 
     @Given("User clicks on {string} in order")
     public void userClicksOnInOrder(String secenek) {
+        tapOn(screen.categoriesScreen().categories);
+        wait(2);
+
         switch (secenek) {
             case "Kitap":
                 tapOn(screen.allCategoriesScreen().kitapIcon);
@@ -148,6 +151,6 @@ public class AllCategoriesSteps extends ReusableMethods {
 
     @Then("scroll horizantal")
     public void scrollHorizantal() throws InterruptedException {
-        swipe(Driver.getDriver(),1);
+        swipe(Driver.getDriver(),2);
     }
 }

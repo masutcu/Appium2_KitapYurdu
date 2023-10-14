@@ -15,11 +15,12 @@ Feature: KitapYurdu App
       | Çok Satanlar  |
       | Yeni Çıkanlar |
 
+
   Scenario: Test2 All Categories Screen Test
     Given User clicks on catagories
     Then User validate the screen title -Tüm Kategoriler
 
-
+  @catagoriesClick
    Scenario Outline: Various header test
       Given User clicks on "<allCatagories>" in order
       And User waits_ 1 _seconds

@@ -19,28 +19,28 @@ public class Screens {
     private CDScreen cdScreen;
 
     public CDScreen cdScreen() {
-        if (cdScreen == null) {
-            cdScreen = new CDScreen();
+        if (this.cdScreen == null) {
+            this.cdScreen = new CDScreen();
         }return cdScreen;
     }
 
 
     public VariousScreen variousScreen(){
-        if(variousScreen==null){
-            variousScreen=new VariousScreen();
+        if(this.variousScreen==null){
+            this.variousScreen=new VariousScreen();
         }return variousScreen;
     }
 
 
     public AllCategoriesScreen allCategoriesScreen(){
-        if(allCategoriesScreen==null){
-            allCategoriesScreen=new AllCategoriesScreen();
+        if(this.allCategoriesScreen==null){
+            this.allCategoriesScreen=new AllCategoriesScreen();
         }return allCategoriesScreen;
     }
 
     public CategoriesScreen categoriesScreen(){
-        if(categoriesScreen== null){
-            categoriesScreen=new CategoriesScreen();
+        if(this.categoriesScreen== null){
+            this.categoriesScreen=new CategoriesScreen();
         } return categoriesScreen;
     }
 

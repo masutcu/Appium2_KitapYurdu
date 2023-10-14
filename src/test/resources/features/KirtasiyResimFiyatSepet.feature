@@ -1,3 +1,4 @@
+@resimFiyatSepet
 Feature: Kitap Yurdu Mobil Test
 
   Background: Kullanici kirtasiye tum urunler bolumunda
