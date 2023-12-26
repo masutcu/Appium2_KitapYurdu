@@ -7,17 +7,13 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        plugin = {"pretty", "html:target/default-cucumber-report",
-                "json:target/json-reports/cucumber.json",
-                "junit:target/xml-report/cucumber.xml"},
+        plugin = {"pretty", "html:raporlar/CucumberRapor.html"},
         features = "src/test/resources/features",
         glue = "stepDefinitions",
-
-        tags = "@catagoriesClick",
-
-        dryRun = false
-
-
+        tags = "@hobi",
+        dryRun = false, //true iken test çalışmadan eksik stepler görülür
+        monochrome = true
 )
+
 public class Runner {
 }

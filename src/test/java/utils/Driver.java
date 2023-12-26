@@ -1,89 +1,65 @@
 package utils;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-
-import java.io.IOException;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import java.io.File;
 import java.net.MalformedURLException;
-import java.net.Socket;
 import java.net.URL;
 import java.time.Duration;
 
 public class Driver {
-    private static UiAutomator2Options options;
-    private static AppiumDriver driver;
 
-    public static AppiumDriver getDriver() {
-
-        if (driver == null) {
-
-            switch (ConfigReader.getProperty("platformName")) {
-                case "Android":
-                  options = new UiAutomator2Options();
+    public static AndroidDriver driver;
+    public static AppiumDriverLocalService service;
 
 
-             //  options.setApp(ConfigReader.getProperty("app"));
-               options.setApp(ConfigReader.getProperty("app"));
+    public static AndroidDriver getDriver()  {
+        if(driver==null) {
+            String appUrl = System.getProperty("user.dir")
+                    + File.separator + "apps"
+                    + File.separator + "Kitapyurdu_8.25.0_Apkpure.apk";
 
-                   //options.setAppPackage("com.mobisoft.kitapyurdu");  //Uygulama paketi adini ayarlar
-                   //options.setAppActivity("com.mobisoft.kitapyurdu.main.MainActivity"); //Uygulama aktivite adini ayarla
 
-                    options.setDeviceName(ConfigReader.getProperty("device"));    //Cihaz UDID'sini ayarla bu kodu cmd'de "adb devices" yazarak buluruz
-                    options.setNoReset(true);   //sifirlama islemini kapat
-                    options.setCapability("shouldTerminateApp", true);   // appi kapatmak için
-                    options.setNewCommandTimeout(Duration.ofSeconds(15));   //yeni komut zaman asimini ayarla
-                    break;
-                case "IOS":
-                    // IOS için ayarlar
-                    break;
-                default:
-                    throw new RuntimeException("Desteklenmeyen Platform: " + ConfigReader.getProperty("platformName"));
+            UiAutomator2Options options = new UiAutomator2Options()
+                    .setApp(appUrl);
+
+            URL url = null;
+            try {
+                url = new URL("http://0.0.0.0:4723");
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
             }
 
-            boolean driverCreated = false;
-            int maxAttempts = 5;
-            int attempt = 0;
-
-            do {
-                try {
-                    System.out.println("Deneme #" + (attempt + 1));
-                    driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
-                    driverCreated = true;
-                    System.out.println("Android baglandi, driver atandi");
-                } catch (MalformedURLException ignored) {
-
-                }
-
-                if (!driverCreated) {
-                    System.out.println("Bekleme ve yeniden deneme...");
-                    attempt++;
-                    if (attempt >= maxAttempts) {
-                        throw new RuntimeException("Belirtilen sayida deneme yapildi, driver olusturulamadi.");
-                    }
-                    // Gerekirse bir bekleme süresi ekleyebilirsiniz.
-                    // Thread.sleep(2000);
-                }
-            } while (!driverCreated);
-
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+            driver = new AndroidDriver(url, options);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
         return driver;
+
     }
 
-    public static boolean isAppiumServerRunning(String host, int port) {
-        try (Socket socket = new Socket(host, port)) {
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
+    public static void serverBaslat(String ipAdres, int port){
+        service=new AppiumServiceBuilder()
+                .withAppiumJS(new File("C:\\Users\\Lenovo\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+                .withIPAddress(ipAdres)
+                .usingPort(port)
+                .build();
+        service.start();
     }
 
-    public static void quitAppiumDriver() {
-        if (driver != null) {
+    public static void serverKapat(){
+        service.stop();
+
+    }
+    public static void driverClose(){
+        //bunu yapmasak çalışan diğer test bir öncekinin kaldığı yerden devam eder.
+        if(driver!=null){
             driver.quit();
-            driver = null;
+            driver=null;
         }
+
     }
+
 }
 

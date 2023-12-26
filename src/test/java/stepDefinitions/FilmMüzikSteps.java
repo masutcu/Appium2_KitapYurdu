@@ -2,7 +2,7 @@ package stepDefinitions;
 
 import io.appium.java_client.AppiumBy;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 import screens.Screens;

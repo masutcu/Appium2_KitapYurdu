@@ -4,7 +4,6 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.commons.io.FileUtils;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
@@ -12,13 +11,8 @@ import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.asserts.SoftAssert;
-import screens.Screens;
-import stepDefinitions.ScreenshotStepDefs;
-
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
@@ -394,6 +388,31 @@ public class ReusableMethods {
         System.out.println("expectedElementSize = " + expectedElementSize);
 
         Assert.assertEquals(actualElementSize , expectedElementSize);
+    }
+    public static void raporuAc(){
+        // Rapor dosyasının tam yolu
+        String raporYolu = "C:\\Users\\Lenovo\\IdeaProjects\\Appium_KitapYurdu_Project\\raporlar\\CucumberRapor.html";
+
+        try {
+            // Google Chrome'un çalıştırılması
+            String chromePath = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+            String command = chromePath + " " + raporYolu;
+            Process process = Runtime.getRuntime().exec(command);
+
+            // İşlemi bekleyin
+            process.waitFor();
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void bekle(int second){
+        try {
+            Thread.sleep(second*1000);
+        } catch (InterruptedException e) {
+            System.out.println("Bekleme yapilamadi");
+            throw new RuntimeException(e);
+        }
     }
 
 

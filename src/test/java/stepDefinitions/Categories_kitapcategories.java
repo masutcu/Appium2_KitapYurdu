@@ -5,7 +5,6 @@ import io.cucumber.java.en.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import screens.Screens;
 import utils.ConfigReader;
 import utils.Driver;
@@ -92,7 +91,7 @@ public class Categories_kitapcategories {
 
         tapOn(screens.kitapCategories().orjınaldıl);
         backToPreScreen();
-scroll(Driver.getDriver(),2);
+        scroll(Driver.getDriver(),2);
         tapOn(screens.kitapCategories().dıger);
         backToPreScreen();
         //devami gelecek
