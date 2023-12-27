@@ -1,3 +1,4 @@
+@fiyatfiltre
 Feature: Kitap Yurdu Mobil Test
   Scenario: Urunlerin sayisini dogrulama
     When App yuklensin

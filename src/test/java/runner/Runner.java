@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:raporlar/CucumberRapor.html"},
         features = "src/test/resources/features",
         glue = "stepDefinitions",
-        tags = "@hobi",
+        tags = "@SwipePic",
         dryRun = false, //true iken test çalışmadan eksik stepler görülür
         monochrome = true
 )

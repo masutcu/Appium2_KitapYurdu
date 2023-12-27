@@ -1,11 +1,13 @@
 package stepDefinitions;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import screens.Screens;
 import utils.Driver;
 import utils.ReusableMethods;
@@ -57,6 +59,8 @@ public class AllCategoriesSteps extends ReusableMethods {
                 tapOn(screen.allCategoriesScreen().ahsapUrunlerIcon);
                 break;
         }
+        wait(2);
+        backToPreScreen();
         wait(2);
     }
 
@@ -152,5 +156,11 @@ public class AllCategoriesSteps extends ReusableMethods {
     @Then("scroll horizantal")
     public void scrollHorizantal() throws InterruptedException {
         swipe(Driver.getDriver(),2);
+    }
+
+    @Then("swipe pictures")
+    public void swipePictures() {
+        swipePictures(Driver.getDriver(),screen.allCategoriesScreen().bardakPic, "left");
+        wait(1);
     }
 }

@@ -1,3 +1,4 @@
+@favoriekleme
 Feature: Kitap Yurdu Mobil Test
 
   Background: Kullanici kirtasiye tum urunler bolumunda
@@ -7,7 +8,6 @@ Feature: Kitap Yurdu Mobil Test
     Then kullaici kirtasiye bolumunde
     And kullanici "Tüm Ürünleri Göster" butonuna tiklar
 
-  Scenario: Kullanici urunleri sepete ekleyebilmelidir
-    When kullanici "Sepete Ekle" butonuna tiklar
-    And kullanici "Sepetinize Eklendi" uyarisini gorur
-
+  Scenario: Kullanici urunleri favoriye ekleyebilmelidir
+    When kullanici bir urundeki fovori butonuna basar
+    And kullanici "başarıyla" uyarisini gorur

@@ -15,7 +15,7 @@ public class KitapCategories {
     }
 
 
-    @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.mobisoft.kitapyurdu:id/imageViewBigLogo']")
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/imageViewSmallLogo")
     public WebElement logo;
 
 

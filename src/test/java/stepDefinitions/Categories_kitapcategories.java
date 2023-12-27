@@ -33,6 +33,8 @@ public class Categories_kitapcategories {
 
     @And("kullanici giris butonuna tiklar")
     public void kullanici_giris_butonuna_tiklar() {
+        backToPreScreen();
+        bekle(2);
         screens.kitapCategories().hesapButonu.click();
 
     }

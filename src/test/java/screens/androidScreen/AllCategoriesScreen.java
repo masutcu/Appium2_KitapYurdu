@@ -28,6 +28,11 @@ public class AllCategoriesScreen extends KitapYurduMainScreen{
     @FindBy(xpath = "//android.widget.TextView[@content-desc=\"Kitapyurdu\"]")
     public WebElement appKitapYurduIcon;
 
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/frameImageSlide")
+    public WebElement bardakPic;
+
+
+
 
 
 }

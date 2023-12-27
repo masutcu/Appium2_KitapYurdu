@@ -31,7 +31,8 @@ public class Ahsap_Products_Steps extends Screens {
         Assert.assertTrue(ahsapScreen.ahsap_urunler_text.isDisplayed());    }
 
     @Then("Print_TheNumber_of_KesmeTahtasi")
-    public void print_thenumber_of_kesmetahtasi() {String ahsap_Urun_Sayisi_Metin = ahsapScreen.ahsap_Urun_Sayisi_Text.getText();
+    public void print_thenumber_of_kesmetahtasi() {
+        String ahsap_Urun_Sayisi_Metin = ahsapScreen.ahsap_Urun_Sayisi_Text.getText();
         for (int i = 0; i < ahsap_Urun_Sayisi_Metin.length(); i++) {
             char Ahsap_Urun_Sayisi = ahsap_Urun_Sayisi_Metin.charAt(i);
             if (Character.isDigit(Ahsap_Urun_Sayisi)) {

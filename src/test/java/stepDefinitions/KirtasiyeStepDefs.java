@@ -175,7 +175,7 @@ public class KirtasiyeStepDefs {
     @And("kullanici en az ve en cok bolumleri random doldurur")
     public void kullaniciEnAzVeEnCokBolumleriRandomDoldurur() {
 
-        randomMin = (int) (Math.random() * 40 + 30);
+        randomMin = (int) (Math.random() * 2 + 30);
         System.out.println(randomMin);
         screens.kirtasiyeScreens().minValue.sendKeys(randomMin.toString());
 

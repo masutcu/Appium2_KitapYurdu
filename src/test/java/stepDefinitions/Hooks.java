@@ -14,12 +14,12 @@ public class Hooks {
     @BeforeAll
     public static void beforeAll(){
         Driver.serverBaslat(ConfigReader.getProperty("localIpAdres"), Integer.parseInt(ConfigReader.getProperty("localPort")));
-
+        Driver.getDriver().activateApp("com.mobisoft.kitapyurdu");
     }
 
     @Before //io cucumber dan import edilmeli
     public void setUp(){
-        Driver.getDriver().activateApp("com.mobisoft.kitapyurdu");
+
     }
 
     @After
@@ -28,12 +28,13 @@ public class Hooks {
             byte[] screenshotAs = Driver.getDriver().getScreenshotAs(OutputType.BYTES);//bu şekilde raporun içine eklenir
             scenario.attach(screenshotAs,"image/png", "Hata Resmi");
         }
-        Driver.getDriver().terminateApp("com.mobisoft.kitapyurdu");
+
     }
 
 
     @AfterAll
     public static void afterAll(){
+        Driver.getDriver().terminateApp("com.mobisoft.kitapyurdu");
         Driver.driverClose();
         Driver.serverKapat();
         ReusableMethods.bekle(2);

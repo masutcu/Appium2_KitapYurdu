@@ -1,5 +1,6 @@
 package utils;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
@@ -175,6 +177,16 @@ public class ReusableMethods {
 
         driver.perform(Collections.singletonList(sequence));}
         Thread.sleep(3000);
+    }
+    public static void swipePictures(AndroidDriver driver, WebElement element, String direction) {
+
+        driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "direction", direction, //left veya right olmalıdır
+                "percent", 1,//1 den büyük olamaz. 0.3 olunca kaydırılacak alanın 1/3 ü kadar kaydıracak
+                "speed", 500
+        ));
+        wait(1);
     }
 
     //Sağa kaydırma
