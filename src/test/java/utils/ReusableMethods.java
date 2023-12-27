@@ -178,15 +178,21 @@ public class ReusableMethods {
         driver.perform(Collections.singletonList(sequence));}
         Thread.sleep(3000);
     }
-    public static void swipePictures(AndroidDriver driver, WebElement element, String direction) {
+    public static void swipePictures(AndroidDriver driver, WebElement element, String direction, int times) {
 
-        driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
-                "elementId", ((RemoteWebElement) element).getId(),
-                "direction", direction, //left veya right olmalıdır
-                "percent", 1,//1 den büyük olamaz. 0.3 olunca kaydırılacak alanın 1/3 ü kadar kaydıracak
-                "speed", 500
-        ));
-        wait(1);
+        int count=0;
+        do {
+            driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
+                    "elementId", ((RemoteWebElement) element).getId(),
+                    "direction", direction, //left veya right olmalıdır
+                    "percent", 1,//1 den büyük olamaz. 0.3 olunca kaydırılacak alanın 1/3 ü kadar kaydıracak
+                    "speed", 500
+            ));
+            count++;
+            wait(1);
+
+        }while (count!=times);
+
     }
 
     //Sağa kaydırma

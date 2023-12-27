@@ -158,9 +158,9 @@ public class AllCategoriesSteps extends ReusableMethods {
         swipe(Driver.getDriver(),2);
     }
 
-    @Then("swipe pictures")
-    public void swipePictures() {
-        swipePictures(Driver.getDriver(),screen.allCategoriesScreen().bardakPic, "left");
+    @Then("swipe pictures {int} times")
+    public void swipePicturesTimes(int times) {
+        swipePictures(Driver.getDriver(),screen.allCategoriesScreen().bardakPic, "left", times);
         wait(1);
     }
 }

@@ -8,5 +8,5 @@ Feature: KitapYurdu App
     And User clicks on Kupa Ve Bardak title
     And User clicks on Kitap Kurdu title
     And User clicks on first product
-    Then swipe pictures
+    Then swipe pictures 2 times
     #Then scroll horizantal
