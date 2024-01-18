@@ -1,11 +1,18 @@
 package screens.androidScreen;
 
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import utils.Driver;
 
+import java.time.Duration;
 import java.util.List;
 
-public class KirtasiyeScreens extends KitapYurduMainScreen {
+public class KirtasiyeScreens  {
+    public KirtasiyeScreens(){
+        PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver(), Duration.ofSeconds(30)), this);
+    }
     @FindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Kategoriler\"]/android.widget.ImageView")
     public WebElement kategorilerMenu;
 

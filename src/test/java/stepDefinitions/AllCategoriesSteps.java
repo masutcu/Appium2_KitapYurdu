@@ -126,6 +126,7 @@ public class AllCategoriesSteps extends ReusableMethods {
     @And("scroll page")
     public void scrollPage() throws InterruptedException {
         scroll(Driver.getDriver(),1);
+        wait(2);
     }
 
     @Then("User clicks on aksesuar title")

@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -22,6 +24,7 @@ import java.time.Duration;
 import java.util.*;
 
 import static java.lang.Double.parseDouble;
+import static utils.Driver.driver;
 
 public class ReusableMethods {
 
@@ -262,7 +265,9 @@ public class ReusableMethods {
     }
 
     public static void backToPreScreen(){
-        Driver.getDriver().navigate().back();
+        //Driver.getDriver().navigate().back();
+        KeyEvent back=new KeyEvent(AndroidKey.BACK);
+        Driver.getDriver().pressKey(back);
     }
 
     /**
@@ -440,6 +445,7 @@ public class ReusableMethods {
             throw new RuntimeException(e);
         }
     }
+
 
 
 }

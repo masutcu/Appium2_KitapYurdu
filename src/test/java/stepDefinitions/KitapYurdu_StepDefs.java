@@ -4,8 +4,7 @@ import screens.androidScreen.KitapYurdu;
 import utils.Driver;
 
 import static org.junit.Assert.*;
-import static utils.ReusableMethods.bekle;
-import static utils.ReusableMethods.scroll;
+import static utils.ReusableMethods.*;
 
 public class KitapYurdu_StepDefs {
 
@@ -32,7 +31,8 @@ public class KitapYurdu_StepDefs {
     @Then("dagobert kelimesi oldugu dogrulandi")
     public void dagobert_kelimesi_oldugu_dogrulandi() throws InterruptedException {
 
-        scroll(Driver.getDriver(), 2);
+        scroll(Driver.getDriver(), 3);
+
 
         assertTrue(kitap.dagobert.isDisplayed());
     }
