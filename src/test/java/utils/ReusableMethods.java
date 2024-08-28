@@ -67,18 +67,8 @@ public class ReusableMethods {
         element.click();
     }
 
-    public static void enterText(WebElement element, String text) {
-        waitToBeClickable(element, Duration.ofSeconds(10));
-        element.sendKeys(text);
-    }
 
-    public static void enterText(WebElement element, String text, boolean needClear) {
-        waitToBeClickable(element, Duration.ofSeconds(10));
-        if (needClear) {
-            element.clear();
-        }
-        element.sendKeys(text);
-    }
+
 
     public static boolean isElementPresent(WebElement webElement) {
         boolean elementFound = false;
@@ -103,24 +93,14 @@ public class ReusableMethods {
         AndroidDriver driver = (AndroidDriver) Driver.getDriver();
         driver.findElement(AppiumBy.ByAndroidUIAutomator.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+elementText+"\"))"));
 
-        tapOn(driver.findElement(By.xpath("//android.widget.TextView[@text='" + elementText + "']")));
+    }
+    public static void scrollWithUiScrollableAndClick(String text) throws InterruptedException {
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+text+"\"))"));
+        Thread.sleep(1000);
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\""+text+"\"]")).click();
     }
 
-    public static void tap(AppiumDriver driver, WebElement element) {
-        Point location = element.getLocation();
-        Dimension size = element.getSize();
 
-        Point centerOfElement = getCenterOfElement(location, size);
-
-        PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
-        Sequence sequence = new Sequence(finger1, 1)
-                .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerOfElement))
-                .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(finger1, Duration.ofMillis(100)))
-                .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-        driver.perform(Collections.singletonList(sequence));
-    }
 
     public static void doubleTap(AppiumDriver driver, WebElement element) {
         Point location = element.getLocation();
@@ -141,6 +121,12 @@ public class ReusableMethods {
 
         driver.perform(Collections.singletonList(sequence));
 
+    }
+    public static void longClickGesture(AndroidDriver driver, WebElement element){
+        driver.executeScript("mobile: longClickGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) element).getId(),
+                "duration", 1000
+        ));
     }
 
     public static void longTap(AppiumDriver driver, WebElement element) {

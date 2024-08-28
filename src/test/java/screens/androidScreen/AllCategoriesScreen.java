@@ -16,23 +16,23 @@ public class AllCategoriesScreen {
 
     @FindBy(xpath = "//android.widget.TextView[@text='Tüm Kategoriler']")
     public WebElement allCategoriesTitle;
-    @FindBy(xpath = "(//android.widget.ImageView)[2]")
+    @FindBy(xpath = "//android.widget.LinearLayout[1]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement kitapIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[3]")
+    @FindBy(xpath = "//android.widget.LinearLayout[2]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement dergiIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[4]")
+    @FindBy(xpath = "//android.widget.LinearLayout[4]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement cesitliIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[5]")
+    @FindBy(xpath = "//android.widget.LinearLayout[3]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement kirtasiyeIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[6]")
+    @FindBy(xpath = "//android.widget.LinearLayout[5]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement hobiIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[7]")
+    @FindBy(xpath = "//android.widget.LinearLayout[6]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement puzzleIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[8]")
+    @FindBy(xpath = "//android.widget.LinearLayout[8]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement aksesuarIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[9]")
+    @FindBy(xpath = "//android.widget.LinearLayout[7]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement duvarAksesuarlariIcon;
-    @FindBy(xpath = "(//android.widget.ImageView)[10]")
+    @FindBy(xpath = "//android.widget.LinearLayout[9]/android.view.ViewGroup/android.widget.RelativeLayout[1]/android.widget.ImageView")
     public WebElement ahsapUrunlerIcon;
     @FindBy(xpath = "//android.widget.TextView[@content-desc=\"Kitapyurdu\"]")
     public WebElement appKitapYurduIcon;

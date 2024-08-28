@@ -14,8 +14,11 @@ public class CategoriesScreen {
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver(), Duration.ofSeconds(30)), this);
     }
 
-    @FindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Kategoriler\"]/android.widget.ImageView")
+    @FindBy(xpath = "//android.widget.TextView[@text='Kategoriler']")
     public WebElement categories;
+    @FindBy(xpath = "//android.widget.TextView[@text='Tümü']")
+    public WebElement categoriesAll;
+
 
     @FindBy(xpath = "(//android.widget.ImageView)[4]")
     public WebElement variousIcon;

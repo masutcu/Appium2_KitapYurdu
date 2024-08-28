@@ -27,8 +27,8 @@ public class AllCategoriesSteps extends ReusableMethods {
 
     @Given("User clicks on {string} in order")
     public void userClicksOnInOrder(String secenek) {
-        tapOn(screen.categoriesScreen().categories);
-        wait(2);
+
+
 
         switch (secenek) {
             case "Kitap":
@@ -52,16 +52,17 @@ public class AllCategoriesSteps extends ReusableMethods {
             case "Aksesuar":
                 tapOn(screen.allCategoriesScreen().aksesuarIcon);
                 break;
-            case "Duvar Aksesuarlari":
+            case "Dekerasyon":
                 tapOn(screen.allCategoriesScreen().duvarAksesuarlariIcon);
                 break;
-            case "Ahsap urunler":
+            case "Ahsap Ürunler":
                 tapOn(screen.allCategoriesScreen().ahsapUrunlerIcon);
                 break;
-        }
-        wait(2);
+
+        }wait(2);
         backToPreScreen();
-        wait(2);
+
+
     }
 
 
@@ -163,5 +164,20 @@ public class AllCategoriesSteps extends ReusableMethods {
     public void swipePicturesTimes(int times) {
         swipePictures(Driver.getDriver(),screen.allCategoriesScreen().bardakPic, "left", times);
         wait(1);
+    }
+
+    @Then("User taps on later on option")
+    public void userTapsOnLaterOnOption() {
+        tapOn(screen.kitapYurdu().laterOn);
+    }
+
+    @And("Scrolls screen to Kategoriler")
+    public void scrollsScreenToKategoriler() {
+        scrollWithUiScrollable("Kategoriler");
+        //veya androidUiAutomator ile ekranı kaydırarak
+        //driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+Kategoriler+"\"))"));
+
+        tapOn(screen.categoriesScreen().categoriesAll);
+        wait(2);
     }
 }

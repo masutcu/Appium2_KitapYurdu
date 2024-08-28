@@ -12,9 +12,9 @@ public class MainScreenSteps extends ReusableMethods{
     Screens screen=new Screens();
     @Given("the application is installed")
     public void theApplicationIsInstalled() {
-      //  Driver.getDriver();
-
-        //tapOn(screen.allCategoriesScreen().appKitapYurduIcon);
+        tapOn(screen.kitapYurdu().laterOn);
+        //  Driver.getDriver();
+        // tapOn(screen.allCategoriesScreen().appKitapYurduIcon);
 
     }
 

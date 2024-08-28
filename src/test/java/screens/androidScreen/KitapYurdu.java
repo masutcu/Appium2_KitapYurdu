@@ -21,4 +21,9 @@ public class KitapYurdu {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='dagobert von mikusch']")
     public WebElement dagobert;
 
+    @FindBy(id = "com.mobisoft.kitapyurdu:id/btnLaterOn")
+    public WebElement laterOn;
+
+
+
 }

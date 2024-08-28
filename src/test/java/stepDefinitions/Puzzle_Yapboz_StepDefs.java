@@ -31,6 +31,7 @@ public class Puzzle_Yapboz_StepDefs extends Screens {
 
     @When("Kategoriler ikonu tiklandi")
     public void kategoriler_ikonu_tiklandi() {
+
         kitapYurdu.kategoriler.click();
     }
     @And("{string} bolumunde oldugu dogrulandi")

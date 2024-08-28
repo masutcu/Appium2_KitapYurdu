@@ -13,13 +13,14 @@ public class Hooks {
 
     @BeforeAll
     public static void beforeAll(){
+        //Driver.serverBaslat("0.0.0.0", 4723);
         Driver.serverBaslat(ConfigReader.getProperty("localIpAdres"), Integer.parseInt(ConfigReader.getProperty("localPort")));
-        Driver.getDriver().activateApp("com.mobisoft.kitapyurdu");
+
     }
 
     @Before //io cucumber dan import edilmeli
     public void setUp(){
-
+        Driver.getDriver().activateApp("com.mobisoft.kitapyurdu");
     }
 
     @After

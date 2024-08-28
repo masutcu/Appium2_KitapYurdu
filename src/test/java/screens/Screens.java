@@ -1,9 +1,10 @@
 package screens;
 
 import screens.androidScreen.*;
+import utils.ReusableMethods;
 
 
-public class Screens {
+public class Screens extends ReusableMethods {
 
     public Screens() {
     }

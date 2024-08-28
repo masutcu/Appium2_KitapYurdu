@@ -19,7 +19,7 @@ public class Driver {
         if(driver==null) {
             String appUrl = System.getProperty("user.dir")
                     + File.separator + "apps"
-                    + File.separator + "Kitapyurdu_8.25.0_Apkpure.apk";
+                    + File.separator + "Kitapyurdu_9.2.2_APKPure.apk";
 
 
             UiAutomator2Options options = new UiAutomator2Options()

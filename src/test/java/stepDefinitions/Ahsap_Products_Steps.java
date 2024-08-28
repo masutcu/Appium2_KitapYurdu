@@ -9,7 +9,7 @@ import screens.androidScreen.AhsapScreen;
 import screens.androidScreen.CategoriesScreen;
 import utils.Driver;
 
-public class Ahsap_Products_Steps extends Screens {
+public class Ahsap_Products_Steps  {
     CategoriesScreen categoriesScreen = new CategoriesScreen();
     AhsapScreen ahsapScreen = new AhsapScreen();
 
